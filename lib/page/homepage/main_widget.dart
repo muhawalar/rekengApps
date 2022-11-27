@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rekeng_apps/helper/themes_color.dart';
-import 'package:rekeng_apps/helper/themes_font.dart';
+import 'package:rekeng_apps/material/themes_color.dart';
+import 'package:rekeng_apps/material/themes_font.dart';
 
 class MainWidget extends StatelessWidget {
   const MainWidget({super.key});
