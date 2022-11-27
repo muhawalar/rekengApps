@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:dropdown_below/dropdown_below.dart';
+import 'package:rekeng_apps/material/widget_reusable.dart';
 import 'package:rekeng_apps/page/transaction/graph_page.dart';
 import 'package:rekeng_apps/page/transaction/workbook_page.dart';
 
@@ -91,28 +92,8 @@ class TransactionPage extends StatelessWidget {
                     border: Border.all(color: ColorApp.font, width: 1)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: DropdownBelow(
-                    value: transactionFilterItems.first,
-                    icon: Icon(
-                      Icons.keyboard_arrow_down,
-                      color: Colors.black,
-                    ),
-                    itemWidth: 200,
-                    boxTextstyle: FontStyle.subtitle,
-                    boxHeight: 45,
-                    boxWidth: 200,
-                    items: transactionFilterItems
-                        .map<DropdownMenuItem<String>>((value) {
-                      return DropdownMenuItem<String>(
-                          alignment: AlignmentDirectional.centerStart,
-                          value: value,
-                          child: Text(
-                            value,
-                            style: FontStyle.dropdownValue,
-                          ));
-                    }).toList(),
-                    onChanged: (value) {},
-                  ),
+                  child:
+                      WidgetCustom.dropdownBelow(items: transactionFilterItems),
                 ),
               )),
         ),

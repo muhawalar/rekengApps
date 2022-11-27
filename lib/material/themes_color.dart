@@ -12,4 +12,5 @@ class ColorApp {
   static Color six = Color(0xFF29756F);
   static Color pengeluaran = Color(0xFFF95B51);
   static Color eight = Color(0xF2F2F2F2);
+  static Color grey = Color(0x000000).withOpacity(0.4);
 }

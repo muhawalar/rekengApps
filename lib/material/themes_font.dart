@@ -21,6 +21,21 @@ class FontStyle {
     color: ColorApp.white,
   );
 
+  static TextStyle heading5 = GoogleFonts.inter(
+      fontSize: 32, fontWeight: FontWeight.w700, color: ColorApp.font);
+
+  static TextStyle heading6 = GoogleFonts.inter(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    color: ColorApp.font,
+  );
+
+  static TextStyle heading7 = GoogleFonts.inter(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    color: ColorApp.primary,
+  );
+
   static TextStyle caption = GoogleFonts.inter(
       fontSize: 16, fontWeight: FontWeight.w600, color: ColorApp.white);
 
@@ -36,6 +51,9 @@ class FontStyle {
   static TextStyle value2 = GoogleFonts.inter(
       fontSize: 20, fontWeight: FontWeight.w600, color: ColorApp.white);
 
+  static TextStyle value3 = GoogleFonts.inter(
+      fontSize: 20, fontWeight: FontWeight.w600, color: ColorApp.font);
+
   static TextStyle action = GoogleFonts.inter(
       fontSize: 16, fontWeight: FontWeight.w500, color: ColorApp.three);
 
@@ -45,6 +63,9 @@ class FontStyle {
   static TextStyle subtitle = GoogleFonts.inter(
       fontSize: 16, fontWeight: FontWeight.w500, color: ColorApp.font);
 
+  static TextStyle subtitle2 = GoogleFonts.inter(
+      fontSize: 16, fontWeight: FontWeight.w500, color: ColorApp.grey);
+
   static TextStyle dayWeekunselected = GoogleFonts.inter(
       fontSize: 13, fontWeight: FontWeight.w400, color: ColorApp.font);
 
@@ -53,4 +74,10 @@ class FontStyle {
 
   static TextStyle dropdownValue = GoogleFonts.inter(
       fontSize: 14, fontWeight: FontWeight.w500, color: ColorApp.font);
+
+  static TextStyle countValue = GoogleFonts.inter(
+      fontSize: 14, fontWeight: FontWeight.w500, color: ColorApp.primary);
+
+  static TextStyle countValue2 = GoogleFonts.inter(
+      fontSize: 16, fontWeight: FontWeight.w500, color: ColorApp.primary);
 }
