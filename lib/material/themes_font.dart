@@ -66,6 +66,26 @@ class FontStyle {
   static TextStyle subtitle2 = GoogleFonts.inter(
       fontSize: 16, fontWeight: FontWeight.w500, color: ColorApp.grey);
 
+  static TextStyle subtitle3 = GoogleFonts.inter(
+      fontSize: 16, fontWeight: FontWeight.w400, color: ColorApp.font);
+
+  static TextStyle subtitle4 = GoogleFonts.inter(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: ColorApp.font,
+    decoration: TextDecoration.underline,
+  );
+
+  static TextStyle subtitle5 = GoogleFonts.inter(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: ColorApp.font,
+    // decoration: TextDecoration.underline,
+  );
+
+  static TextStyle subtitle6 = GoogleFonts.inter(
+      fontSize: 16, fontWeight: FontWeight.w500, color: ColorApp.grey);
+
   static TextStyle dayWeekunselected = GoogleFonts.inter(
       fontSize: 13, fontWeight: FontWeight.w400, color: ColorApp.font);
 
@@ -78,6 +98,12 @@ class FontStyle {
   static TextStyle countValue = GoogleFonts.inter(
       fontSize: 14, fontWeight: FontWeight.w500, color: ColorApp.primary);
 
+  static TextStyle countValueRed = GoogleFonts.inter(
+      fontSize: 14, fontWeight: FontWeight.w500, color: ColorApp.pengeluaran);
+
   static TextStyle countValue2 = GoogleFonts.inter(
       fontSize: 16, fontWeight: FontWeight.w500, color: ColorApp.primary);
+
+  static TextStyle countValue3 = GoogleFonts.inter(
+      fontSize: 16, fontWeight: FontWeight.w500, color: ColorApp.pengeluaran);
 }

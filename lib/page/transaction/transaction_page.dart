@@ -4,6 +4,7 @@ import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:dropdown_below/dropdown_below.dart';
 import 'package:rekeng_apps/material/widget_reusable.dart';
 import 'package:rekeng_apps/page/transaction/graph_page.dart';
+import 'package:rekeng_apps/page/transaction/report_page.dart';
 import 'package:rekeng_apps/page/transaction/workbook_page.dart';
 
 class TransactionPage extends StatelessWidget {
@@ -69,7 +70,7 @@ class TransactionPage extends StatelessWidget {
       SizedBox(
         height: 29,
       ),
-      WorkbookPage()
+      ReportPage()
     ]));
   }
 
@@ -77,7 +78,7 @@ class TransactionPage extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          flex: 4,
+          flex: 2,
           child: SizedBox(),
         ),
         Expanded(
