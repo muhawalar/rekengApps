@@ -78,6 +78,9 @@ class ProfilePage extends StatelessWidget {
                         height: 36,
                       ),
                       account(iconData: Icons.lock, desc: 'Data dan Pribadi'),
+                      SizedBox(
+                        height: 36,
+                      ),
                     ])))
           ]),
         )

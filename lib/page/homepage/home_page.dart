@@ -10,62 +10,62 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: [
-        Image.asset(
-          'assets/background/background.png',
-          // height: MediaQuery.of(context).size.height,
-          // width: MediaQuery.of(context).size.width,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 80, left: 15.0, right: 15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Selamat Pagi',
-                        style: FontStyle.heading,
-                      ),
-                      SizedBox(
-                        height: 7,
-                      ),
-                      Text(
-                        'NF',
-                        style: FontStyle.heading2,
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                        color: ColorApp.white.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(6.67)),
-                    child: Image.asset(
-                      'assets/icons/bell.png',
-                      height: 24,
-                      width: 24,
+      body: SingleChildScrollView(
+        child: Stack(children: [
+          Image.asset('assets/background/background.png',
+              height: MediaQuery.of(context).size.height * 0.34,
+              width: double.infinity),
+          Padding(
+            padding: const EdgeInsets.only(top: 80, left: 15.0, right: 15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Selamat Pagi',
+                          style: FontStyle.heading,
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Text(
+                          'NF',
+                          style: FontStyle.heading2,
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 33,
-              ),
-              MainWidget(),
-              SizedBox(
-                height: 30,
-              ),
-              MenuWidget()
-            ],
+                    Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                          color: ColorApp.white.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(6.67)),
+                      child: Image.asset(
+                        'assets/icons/bell.png',
+                        height: 24,
+                        width: 24,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 33,
+                ),
+                MainWidget(),
+                SizedBox(
+                  height: 30,
+                ),
+                MenuWidget()
+              ],
+            ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 
