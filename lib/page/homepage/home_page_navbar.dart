@@ -27,7 +27,7 @@ class HomePageBottomBar extends StatelessWidget {
             BottomNavigationBarItem(
                 icon: Icon(
                   (model.currentIndex == 0)
-                      ? Icons.home_filled
+                      ? Icons.home_rounded
                       : Icons.home_outlined,
                   size: 30,
                   color: ColorApp.primary,

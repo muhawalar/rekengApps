@@ -13,9 +13,12 @@ import 'package:rekeng_apps/page/splash_screen.dart';
 import 'package:rekeng_apps/page/transaction/transaction_page.dart';
 import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main(List<String> args) {
-  runApp(MyApp());
+void main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: HomePageBottomBar(),
+          home: SplashScreen(),
         ));
   }
 }

@@ -3,9 +3,12 @@ import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:dropdown_below/dropdown_below.dart';
 import 'package:rekeng_apps/material/widget_reusable.dart';
+import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
 import 'package:rekeng_apps/page/transaction/graph_page.dart';
 import 'package:rekeng_apps/page/transaction/report_page.dart';
 import 'package:rekeng_apps/page/transaction/workbook_page.dart';
+import 'package:provider/provider.dart';
+import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
 class TransactionPage extends StatelessWidget {
   TransactionPage({super.key});
@@ -23,21 +26,32 @@ class TransactionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<RekengProvider>(context);
     return Scaffold(
         body: ListView(children: [
       SizedBox(
         height: 20,
       ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Image.asset('assets/icons/arrow_back.png'),
-          Text(
-            'Transaksi',
-            style: FontStyle.heading3,
-          ),
-          Image.asset('assets/icons/download.png')
-        ],
+      Padding(
+        padding: const EdgeInsets.only(left: 20, right: 35),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            InkWell(
+                child: Container(
+                    height: 28,
+                    width: 28,
+                    child: Image.asset('assets/icons/arrow_back.png')),
+                onTap: () {
+                  model.newScreenIndex(0);
+                }),
+            Text(
+              'Transaksi',
+              style: FontStyle.heading3,
+            ),
+            Image.asset('assets/icons/download.png')
+          ],
+        ),
       ),
       SizedBox(
         height: 43,

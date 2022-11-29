@@ -1,28 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
+import 'package:provider/provider.dart';
+import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<RekengProvider>(context);
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(children: [
-        SingleChildScrollView(
-          child: Stack(children: [
-            Image.asset('assets/background/background.png'),
-            SafeArea(
-                child: Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
-                    child: Column(children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        Stack(children: [
+          Image.asset('assets/background/background.png'),
+          SafeArea(
+              child: Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Column(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0, right: 35),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Image.asset(
-                            'assets/icons/arrow_back.png',
-                            color: ColorApp.white,
+                          InkWell(
+                            child: Container(
+                              height: 28,
+                              width: 28,
+                              child: Image.asset(
+                                'assets/icons/arrow_back.png',
+                                color: ColorApp.white,
+                              ),
+                            ),
+                            onTap: () {
+                              model.newScreenIndex(0);
+                            },
                           ),
                           Text(
                             'Profile',
@@ -35,55 +48,55 @@ class ProfilePage extends StatelessWidget {
                           )
                         ],
                       ),
-                      SizedBox(
-                        height: 110,
+                    ),
+                    SizedBox(
+                      height: 110,
+                    ),
+                    CircleAvatar(
+                      radius: 50,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Muh Awal',
+                      style: FontStyle.value3,
+                    ),
+                    SizedBox(
+                      height: 70,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 35, right: 35),
+                      child: Divider(
+                        thickness: 1,
                       ),
-                      CircleAvatar(
-                        radius: 50,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        'Muh Awal',
-                        style: FontStyle.value3,
-                      ),
-                      SizedBox(
-                        height: 70,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 35, right: 35),
-                        child: Divider(
-                          thickness: 1,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      account(iconData: Icons.person, desc: 'Info Akun'),
-                      SizedBox(
-                        height: 36,
-                      ),
-                      account(iconData: Icons.people, desc: 'Profile'),
-                      SizedBox(
-                        height: 36,
-                      ),
-                      account(iconData: Icons.mail, desc: 'Pusat Pesan'),
-                      SizedBox(
-                        height: 36,
-                      ),
-                      account(
-                          iconData: Icons.security, desc: 'Login dan Keamanan'),
-                      SizedBox(
-                        height: 36,
-                      ),
-                      account(iconData: Icons.lock, desc: 'Data dan Pribadi'),
-                      SizedBox(
-                        height: 36,
-                      ),
-                    ])))
-          ]),
-        )
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    account(iconData: Icons.person, desc: 'Info Akun'),
+                    SizedBox(
+                      height: 36,
+                    ),
+                    account(iconData: Icons.people, desc: 'Profile'),
+                    SizedBox(
+                      height: 36,
+                    ),
+                    account(iconData: Icons.mail, desc: 'Pusat Pesan'),
+                    SizedBox(
+                      height: 36,
+                    ),
+                    account(
+                        iconData: Icons.security, desc: 'Login dan Keamanan'),
+                    SizedBox(
+                      height: 36,
+                    ),
+                    account(iconData: Icons.lock, desc: 'Data dan Pribadi'),
+                    SizedBox(
+                      height: 36,
+                    ),
+                  ])))
+        ])
       ]),
     ));
   }
