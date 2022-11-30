@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,14 @@ import 'package:rekeng_apps/page/transaction/transaction_page.dart';
 class RekengProvider with ChangeNotifier {
   int currentIndex = 0;
 
+  bool onTapDate = false;
+
+  String selectedFilter = 'Pengeluaran';
+
+  String selectedInvoice = 'Kas';
+
+  DateTime inputDate = DateTime.now();
+
   List<dynamic> screens = [
     HomePage(),
     TransactionPage(),
@@ -21,6 +30,11 @@ class RekengProvider with ChangeNotifier {
 
   void newScreenIndex(int newIndex) {
     currentIndex = newIndex;
+    notifyListeners();
+  }
+
+  void newOnTapDate() {
+    onTapDate = !onTapDate;
     notifyListeners();
   }
 
@@ -72,4 +86,35 @@ class RekengProvider with ChangeNotifier {
           .showSnackBar(SnackBar(content: Text(e.message.toString())));
     }
   }
+
+  void setSelectedFilterTransaction(String s) {
+    selectedFilter = s;
+    notifyListeners();
+  }
+
+  void setSelectedInvoice(String newValue) {
+    selectedInvoice = newValue;
+    notifyListeners();
+  }
+
+  void setInputTime(DateTime dateTime) {
+    inputDate = dateTime;
+    notifyListeners();
+  }
+
+  TextEditingController? name;
+  TextEditingController? total;
+
+  @override
+  void dispose() {
+    name!.dispose();
+    total!.dispose();
+    super.dispose();
+  }
+
+  // Future incomeOutcomeData() {
+  //   final dataIncomeOutcome = FirebaseFirestore.instance.collection().doc();
+  //   ic
+
+  // }
 }

@@ -103,6 +103,16 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
+                                  Future.delayed(Duration(seconds: 3), () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      },
+                                    );
+                                  });
                                   model.signIn(
                                       emailController, passController, context);
                                 }

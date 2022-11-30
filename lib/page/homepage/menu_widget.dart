@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
+import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
+import 'package:rekeng_apps/page/transaction/transaction_page.dart';
+import 'package:provider/provider.dart';
+import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
 class MenuWidget extends StatelessWidget {
   const MenuWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<RekengProvider>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,12 +27,48 @@ class MenuWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                menu(image: 'assets/icons/jurnal.png', subtitle: 'Jurnal Umum'),
-                menu(
-                    image: 'assets/icons/bukuBesar.png',
-                    subtitle: 'Buku Besar'),
-                menu(
-                    image: 'assets/icons/neraca.png', subtitle: 'Naraca Saldo'),
+                InkWell(
+                  child: menu(
+                      image: 'assets/icons/jurnal.png',
+                      subtitle: 'Jurnal Umum'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        model.setSelectedFilterTransaction('Jurnal Umum');
+                        model.newScreenIndex(1);
+                        return HomePageBottomBar();
+                      },
+                    ));
+                  },
+                ),
+                InkWell(
+                  child: menu(
+                      image: 'assets/icons/bukuBesar.png',
+                      subtitle: 'Buku Besar'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        model.setSelectedFilterTransaction('Buku Besar');
+                        model.newScreenIndex(1);
+                        return HomePageBottomBar();
+                      },
+                    ));
+                  },
+                ),
+                InkWell(
+                  child: menu(
+                      image: 'assets/icons/neraca.png',
+                      subtitle: 'Naraca Saldo'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        model.setSelectedFilterTransaction('Neraca Saldo');
+                        model.newScreenIndex(1);
+                        return HomePageBottomBar();
+                      },
+                    ));
+                  },
+                ),
               ],
             ),
             SizedBox(
@@ -36,15 +77,49 @@ class MenuWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                menu(
-                    image: 'assets/icons/jurnalPenyesuaian.png',
-                    subtitle: 'Jurnal \nPenyesuaian'),
-                menu(
-                    image: 'assets/icons/laporanKeuangan.png',
-                    subtitle: 'Laporan \nKeuangan'),
-                menu(
-                    image: 'assets/icons/jurnalPenutup.png',
-                    subtitle: 'Jurnal \nPenutup'),
+                InkWell(
+                  child: menu(
+                      image: 'assets/icons/jurnalPenyesuaian.png',
+                      subtitle: 'Jurnal \nPenyesuaian'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        model
+                            .setSelectedFilterTransaction('Jurnal Penyesuaian');
+                        model.newScreenIndex(1);
+                        return HomePageBottomBar();
+                      },
+                    ));
+                  },
+                ),
+                InkWell(
+                  child: menu(
+                      image: 'assets/icons/laporanKeuangan.png',
+                      subtitle: 'Laporan \nKeuangan'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        model.setSelectedFilterTransaction('Laporan Keuangan');
+                        model.newScreenIndex(1);
+                        return HomePageBottomBar();
+                      },
+                    ));
+                  },
+                ),
+                InkWell(
+                  child: menu(
+                      image: 'assets/icons/jurnalPenutup.png',
+                      subtitle: 'Jurnal \nPenutup'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        model.setSelectedFilterTransaction('Jurnal Penutup');
+                        model.newScreenIndex(1);
+                        return HomePageBottomBar();
+                      },
+                    ));
+                  },
+                ),
               ],
             ),
           ],

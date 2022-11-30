@@ -5,6 +5,9 @@ import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:rekeng_apps/material/widget_reusable.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:rekeng_apps/page/transaction/transaction_page.dart';
+import 'package:provider/provider.dart';
+import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
 class FormInvoice extends StatelessWidget {
   FormInvoice({super.key});
@@ -12,6 +15,7 @@ class FormInvoice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<RekengProvider>(context);
     return Column(
       // mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,11 +28,30 @@ class FormInvoice extends StatelessWidget {
           height: 10,
         ),
         Container(
+            padding: EdgeInsets.all(10),
+            width: double.infinity,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: ColorApp.black.withOpacity(0.4))),
             height: 50,
-            child: WidgetCustom.dropdownBelow(items: choiceListItems)),
+            child: DropdownButton(
+              isExpanded: true,
+              underline: Container(),
+              value: model.selectedInvoice,
+              items: choiceListItems.map<DropdownMenuItem<String>>((value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: TextStyle(color: ColorApp.font),
+                  ),
+                );
+              }).toList(),
+              onChanged: (String? newValue) {
+                model.setSelectedInvoice(newValue!);
+                model.selectedInvoice = newValue;
+              },
+            )),
         SizedBox(
           height: 17,
         ),
@@ -41,7 +64,8 @@ class FormInvoice extends StatelessWidget {
         ),
         Container(
           height: 50,
-          child: TextField(
+          child: TextFormField(
+            controller: model.name,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                   borderSide:
@@ -62,7 +86,8 @@ class FormInvoice extends StatelessWidget {
         ),
         Container(
           height: 50,
-          child: TextField(
+          child: TextFormField(
+            controller: model.total,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               prefix: Text(
@@ -98,7 +123,7 @@ class FormInvoice extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    DateTime.now().toString(),
+                    '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}',
                     style: FontStyle.dropdownValue,
                   ),
                   Icon(
@@ -109,12 +134,14 @@ class FormInvoice extends StatelessWidget {
               ),
             ),
           ),
-          onTap: () {
-            showDatePicker(
+          onTap: () async {
+            DateTime? newInputDate = await showDatePicker(
                 context: context,
-                initialDate: DateTime.now(),
+                initialDate: model.inputDate,
                 firstDate: DateTime.now(),
                 lastDate: DateTime(2030));
+            if (newInputDate == null) return;
+            model.setInputTime(newInputDate);
           },
         ),
         SizedBox(
