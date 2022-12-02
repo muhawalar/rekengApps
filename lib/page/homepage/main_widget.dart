@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
+import 'package:provider/provider.dart';
+import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
 class MainWidget extends StatelessWidget {
   const MainWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<RekengProvider>(context);
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -31,7 +34,7 @@ class MainWidget extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  'Rp 2,548.000',
+                  'Rp. ' + model.totalKeseimbangan().toString(),
                   style: FontStyle.value,
                 ),
                 SizedBox(
@@ -66,7 +69,7 @@ class MainWidget extends StatelessWidget {
                           height: 6,
                         ),
                         Text(
-                          'Rp 1,840.000',
+                          'Rp. ' + model.pemasukan.toString(),
                           style: FontStyle.value2,
                         ),
                       ],
@@ -97,7 +100,7 @@ class MainWidget extends StatelessWidget {
                           height: 6,
                         ),
                         Text(
-                          'Rp 284.000',
+                          'Rp. ' + model.pengeluaran.toString(),
                           style: FontStyle.value2,
                         ),
                       ],

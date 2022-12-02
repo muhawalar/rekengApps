@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
 class RegisterPage extends StatefulWidget {
-  RegisterPage({super.key});
+  const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -50,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         fontSize: 50,
                         color: ColorApp.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 42,
                   ),
                   Container(
@@ -70,33 +70,33 @@ class _RegisterPageState extends State<RegisterPage> {
                               'Email',
                               style: FontStyle.subtitle6,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             formField(emailController, false),
-                            SizedBox(
+                            const SizedBox(
                               height: 17,
                             ),
                             Text(
                               'Password',
                               style: FontStyle.subtitle6,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             formField(passController, true),
-                            SizedBox(
+                            const SizedBox(
                               height: 17,
                             ),
                             Text(
                               'Confirm Password',
                               style: FontStyle.subtitle6,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             formField(confirmPassController, true),
-                            SizedBox(
+                            const SizedBox(
                               height: 60,
                             ),
                             InkWell(
@@ -122,14 +122,14 @@ class _RegisterPageState extends State<RegisterPage> {
                                         passController, context);
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
+                                        const SnackBar(
                                             content: Text(
                                                 'Your password does\'nt match or less than sixth character')));
                                   }
                                 }
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Row(
@@ -143,7 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     onPressed: () {
                                       Navigator.push(context, MaterialPageRoute(
                                         builder: (context) {
-                                          return LoginPage();
+                                          return const LoginPage();
                                         },
                                       ));
                                     },

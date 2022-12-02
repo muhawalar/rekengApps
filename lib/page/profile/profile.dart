@@ -25,7 +25,7 @@ class ProfilePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           InkWell(
-                            child: Container(
+                            child: SizedBox(
                               height: 28,
                               width: 28,
                               child: Image.asset(
@@ -49,50 +49,50 @@ class ProfilePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 110,
                     ),
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 50,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
-                      'Muh Awal',
+                      'User',
                       style: FontStyle.value3,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 70,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 35, right: 35),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 35, right: 35),
                       child: Divider(
                         thickness: 1,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     account(iconData: Icons.person, desc: 'Info Akun'),
-                    SizedBox(
+                    const SizedBox(
                       height: 36,
                     ),
                     account(iconData: Icons.people, desc: 'Profile'),
-                    SizedBox(
+                    const SizedBox(
                       height: 36,
                     ),
                     account(iconData: Icons.mail, desc: 'Pusat Pesan'),
-                    SizedBox(
+                    const SizedBox(
                       height: 36,
                     ),
                     account(
                         iconData: Icons.security, desc: 'Login dan Keamanan'),
-                    SizedBox(
+                    const SizedBox(
                       height: 36,
                     ),
                     account(iconData: Icons.lock, desc: 'Data dan Pribadi'),
-                    SizedBox(
+                    const SizedBox(
                       height: 36,
                     ),
                   ])))
@@ -111,7 +111,7 @@ class ProfilePage extends StatelessWidget {
             size: 30,
             color: ColorApp.grey,
           ),
-          SizedBox(
+          const SizedBox(
             width: 30,
           ),
           Text(

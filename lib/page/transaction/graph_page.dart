@@ -13,7 +13,7 @@ class GraphPage extends StatelessWidget {
           height: 203,
           color: ColorApp.primary,
         ),
-        SizedBox(
+        const SizedBox(
           height: 60,
         ),
         Padding(
@@ -29,7 +29,7 @@ class GraphPage extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 23,
         ),
         Padding(
@@ -68,7 +68,7 @@ class GraphPage extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 22,
         ),
         Padding(

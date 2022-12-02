@@ -27,14 +27,14 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Selamat Pagi',
+                          'Selamat Datang',
                           style: FontStyle.heading,
                         ),
-                        SizedBox(
+                      const   SizedBox(
                           height: 7,
                         ),
                         Text(
-                          'NF',
+                          'User',
                           style: FontStyle.heading2,
                         ),
                       ],
@@ -53,14 +53,14 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+            const     SizedBox(
                   height: 33,
                 ),
-                MainWidget(),
-                SizedBox(
+            const     MainWidget(),
+            const     SizedBox(
                   height: 30,
                 ),
-                MenuWidget()
+            const     MenuWidget()
               ],
             ),
           ),

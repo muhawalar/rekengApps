@@ -4,8 +4,8 @@ import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
-class WorkbookPage extends StatelessWidget {
-  const WorkbookPage({super.key});
+class NeracaPage extends StatelessWidget {
+  const NeracaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,34 +13,39 @@ class WorkbookPage extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: FutureBuilder(
-        future: model.getJurnalUmum(),
+        future: model.getNeracaSaldo(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            var jurnalUmum = snapshot.data!.docs;
+            var listNeracaSaldo = snapshot.data!.docs;
             if (snapshot.connectionState == ConnectionState.done) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 20),
-                child: Column(
-                  // scrollDirection: Axis.vertical,
-                  children: [
-                    const headTable(),
-                    SizedBox(
-                      height: 500,
-                      width: 650,
-                      child: ListView.builder(
-                        itemCount: jurnalUmum.length,
-                        itemBuilder: (context, index) {
-                          return contentTable(
-                            index: index,
-                          );
-                        },
-                      ),
-                    )
-                  ],
-                ),
+              return Column(
+                // scrollDirection: Axis.vertical,
+                children: [
+                  const headTable(),
+                  SizedBox(
+                    height: 500,
+                    width: 650,
+                    child: ListView.builder(
+                      itemCount: listNeracaSaldo.length,
+                      itemBuilder: (context, index) {
+                        num kreditNeracaSaldo = (listNeracaSaldo[index].data()
+                            as Map<String, dynamic>)["debet"];
+                        num debetNeracaSaldo = (listNeracaSaldo[index].data()
+                            as Map<String, dynamic>)["debet"];
+
+                        model.countDebetNeracaSaldo(debetNeracaSaldo);
+                        model.countKreditNeracaSaldo(kreditNeracaSaldo);
+                        return contentTable(
+                          index: index,
+                        );
+                      },
+                    ),
+                  )
+                ],
               );
             }
           }
+          // print(model.totalDebetNeracaSaldo);
           return Container();
         },
       ),
@@ -56,6 +61,8 @@ class headTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      // mainAxisAlignment: MainAxisAlignment.start,
+      // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
             height: 40,
@@ -63,7 +70,7 @@ class headTable extends StatelessWidget {
             color: ColorApp.primary,
             child: Center(
                 child: Text(
-              'Tanggal',
+              'Kode Rek',
               style: FontStyle.dayWeekSelected,
             ))),
         const VerticalDivider(
@@ -75,19 +82,7 @@ class headTable extends StatelessWidget {
             color: ColorApp.primary,
             child: Center(
                 child: Text(
-              'Keterangan',
-              style: FontStyle.dayWeekSelected,
-            ))),
-        const VerticalDivider(
-          width: 1,
-        ),
-        Container(
-            height: 40,
-            width: 60,
-            color: ColorApp.primary,
-            child: Center(
-                child: Text(
-              'Ref',
+              'Rekening',
               style: FontStyle.dayWeekSelected,
             ))),
         const VerticalDivider(
@@ -120,20 +115,26 @@ class headTable extends StatelessWidget {
 }
 
 class contentTable extends StatelessWidget {
-  contentTable({Key? key, required this.index}) : super(key: key);
+  contentTable({
+    Key? key,
+    this.index,
+  }) : super(key: key);
+
   int? index;
+
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
     return FutureBuilder(
-      future: model.getJurnalUmum(),
+      future: model.getNeracaSaldo(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          var jurnalUmum = snapshot.data!.docs;
+          var neracaSaldo = snapshot.data!.docs;
           if (snapshot.connectionState == ConnectionState.done) {
             return Padding(
               padding: const EdgeInsets.all(3.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                       height: 100,
@@ -141,8 +142,8 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        (jurnalUmum[index!].data()
-                            as Map<String, dynamic>)["tanggal"],
+                        (neracaSaldo[index!].data()
+                            as Map<String, dynamic>)["kode_rek"],
                         style: FontStyle.dayWeekunselected,
                       ))),
                   const VerticalDivider(
@@ -153,25 +154,9 @@ class contentTable extends StatelessWidget {
                       width: 200,
                       color: ColorApp.three,
                       child: Center(
-                          child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          (jurnalUmum[index!].data()
-                              as Map<String, dynamic>)["keterangan"],
-                          style: FontStyle.dayWeekunselected,
-                        ),
-                      ))),
-                  const VerticalDivider(
-                    width: 1,
-                  ),
-                  Container(
-                      height: 100,
-                      width: 60,
-                      color: ColorApp.three,
-                      child: Center(
                           child: Text(
-                        (jurnalUmum[index!].data()
-                            as Map<String, dynamic>)["ref"],
+                        (neracaSaldo[index!].data()
+                            as Map<String, dynamic>)["rekening"],
                         style: FontStyle.dayWeekunselected,
                       ))),
                   const VerticalDivider(
@@ -183,7 +168,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        "Rp. ${(jurnalUmum[index!].data()
+                        "Rp. ${(neracaSaldo[index!].data()
                                     as Map<String, dynamic>)["debet"]}",
                         style: FontStyle.dayWeekunselected,
                       ))),
@@ -196,7 +181,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        "Rp. ${(jurnalUmum[index!].data()
+                        "Rp. ${(neracaSaldo[index!].data()
                                     as Map<String, dynamic>)["kredit"]}",
                         style: FontStyle.dayWeekunselected,
                       ))),
@@ -204,11 +189,11 @@ class contentTable extends StatelessWidget {
               ),
             );
           }
-          return Container();
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return Container();
       },
     );
   }

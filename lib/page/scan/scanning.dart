@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
-import 'package:rekeng_apps/page/income/form_invoice.dart';
 import 'package:rekeng_apps/page/income/income.dart';
 import 'package:rekeng_apps/page/outcome/outcome.dart';
 
@@ -15,7 +14,7 @@ class ScanningPage extends StatelessWidget {
       child: Column(
         children: [
           Image.asset('assets/background/background.png'),
-          SizedBox(
+          const SizedBox(
             height: 149,
           ),
           Row(
@@ -47,7 +46,7 @@ class ScanningPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
-                      return Income();
+                      return const Income();
                     },
                   ));
                 },
@@ -77,7 +76,7 @@ class ScanningPage extends StatelessWidget {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
-                      return Outcome();
+                      return const Outcome();
                     },
                   ));
                 },

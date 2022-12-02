@@ -22,28 +22,28 @@ class ReportPage extends StatelessWidget {
             child: Column(
               children: [
                 reportWidget(desc: 'Aset Lancar', value: '5.000.000'),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 reportWidget(desc: 'Kas', value: '9.000.000'),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 reportWidget(desc: 'Giro', value: '500.000'),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 reportWidget(desc: 'Deposito', value: '700.000'),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 reportUnderlineWidget(desc: 'Piutang Usaha', value: '900.000'),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 reportWidgetBold(
                     desc: 'Jumlah Aset Lancar', value: '16.500.000'),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
                 Row(
@@ -55,38 +55,38 @@ class ReportPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 reportWidgetNew(desc: 'Tanah', value: '220.000.000'),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 reportWidget(desc: 'Bangunan', value: '80.000.000'),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 reportWidgetDouble(
                     desc: 'Bangunan',
                     value: '5.000.000',
                     value2: '120.000.000'),
-                SizedBox(
+                const SizedBox(
                   height: 29,
                 ),
                 reportWidget(desc: 'Peralatan', value: '500.000'),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 reportUnderlineDouble(
                     desc: 'Akumulasi Penyusutan Peralatan',
                     value: '50.000',
                     value2: '450.000'),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 reportWidgetBold(
                     desc: 'Jumlah Aset Tetap', value: '356.950.000'),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 reportWidgetBold(
@@ -105,14 +105,14 @@ class ReportPage extends StatelessWidget {
   }) {
     return Row(
       children: [
-        Container(
+        SizedBox(
           width: 159,
           child: Text(
             desc,
             style: FontStyle.subtitle3,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 117,
         ),
         Text(
@@ -130,14 +130,14 @@ class ReportPage extends StatelessWidget {
   }) {
     return Row(
       children: [
-        Container(
+        SizedBox(
           width: 159,
           child: Text(
             desc,
             style: FontStyle.subtitle3,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 243,
         ),
         Text(
@@ -151,21 +151,21 @@ class ReportPage extends StatelessWidget {
   Row reportWidgetDouble({required desc, required value, required value2}) {
     return Row(
       children: [
-        Container(
+        SizedBox(
           width: 159,
           child: Text(
             desc,
             style: FontStyle.subtitle3,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 117,
         ),
         Text(
           'Rp. ' + value,
           style: FontStyle.subtitle3,
         ),
-        SizedBox(
+        const SizedBox(
           width: 20,
         ),
         Text(
@@ -182,14 +182,14 @@ class ReportPage extends StatelessWidget {
   }) {
     return Row(
       children: [
-        Container(
+        SizedBox(
           width: 159,
           child: Text(
             desc,
             style: FontStyle.subtitle5,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 243,
         ),
         Text(
@@ -206,14 +206,14 @@ class ReportPage extends StatelessWidget {
   }) {
     return Row(
       children: [
-        Container(
+        SizedBox(
           width: 159,
           child: Text(
             desc,
             style: FontStyle.subtitle3,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 117,
         ),
         Text(
@@ -231,21 +231,21 @@ class ReportPage extends StatelessWidget {
   }) {
     return Row(
       children: [
-        Container(
+        SizedBox(
           width: 220,
           child: Text(
             desc,
             style: FontStyle.subtitle3,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 55,
         ),
         Text(
           'Rp. ' + value,
           style: FontStyle.subtitle4,
         ),
-        SizedBox(
+        const SizedBox(
           width: 40,
         ),
         Text(

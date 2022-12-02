@@ -18,7 +18,7 @@ class OnBoardingPage extends StatelessWidget {
             'assets/background/on_boarding.png',
             height: MediaQuery.of(context).size.height * 0.5,
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           Text(
@@ -26,7 +26,7 @@ class OnBoardingPage extends StatelessWidget {
             style: TextStyle(
                 fontFamily: 'Lontara', fontSize: 50, color: ColorApp.primary),
           ),
-          SizedBox(
+          const SizedBox(
             height: 17,
           ),
           Padding(
@@ -48,7 +48,7 @@ class OnBoardingPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
-                    return RegisterPage();
+                    return const RegisterPage();
                   },
                 ));
               },
@@ -69,7 +69,7 @@ class OnBoardingPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        return LoginPage();
+                        return const LoginPage();
                       },
                     ));
                   }),

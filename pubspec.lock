@@ -155,6 +155,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  firebase_ml_vision_raw_bytes:
+    dependency: "direct main"
+    description:
+      name: firebase_ml_vision_raw_bytes
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.1"
   firebase_storage:
     dependency: "direct main"
     description:

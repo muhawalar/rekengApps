@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
-import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
 import 'package:rekeng_apps/page/loginregister/register.dart';
 import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -48,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                         fontSize: 50,
                         color: ColorApp.white),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 42,
                   ),
                   Container(
@@ -69,22 +68,22 @@ class _LoginPageState extends State<LoginPage> {
                               'Email',
                               style: FontStyle.subtitle6,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             formField(emailController, false),
-                            SizedBox(
+                            const SizedBox(
                               height: 17,
                             ),
                             Text(
                               'Password',
                               style: FontStyle.subtitle6,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             formField(passController, true),
-                            SizedBox(
+                            const SizedBox(
                               height: 42,
                             ),
                             InkWell(
@@ -103,11 +102,11 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
-                                  Future.delayed(Duration(seconds: 3), () {
+                                  Future.delayed(const Duration(seconds: 3), () {
                                     showDialog(
                                       context: context,
                                       builder: (context) {
-                                        return Center(
+                                        return const Center(
                                           child: CircularProgressIndicator(),
                                         );
                                       },
@@ -118,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                                 }
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Row(
@@ -132,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                                     onPressed: () {
                                       Navigator.push(context, MaterialPageRoute(
                                         builder: (context) {
-                                          return RegisterPage();
+                                          return const RegisterPage();
                                         },
                                       ));
                                     },

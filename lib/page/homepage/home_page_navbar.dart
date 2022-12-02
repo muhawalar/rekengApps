@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
-import 'package:rekeng_apps/material/themes_font.dart';
-import 'package:rekeng_apps/page/homepage/main_widget.dart';
-import 'package:rekeng_apps/page/homepage/menu_widget.dart';
-import 'package:rekeng_apps/page/profile/profile.dart';
-import 'package:rekeng_apps/page/scan/scanning.dart';
-import 'package:rekeng_apps/page/transaction/transaction_page.dart';
 import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
 class HomePageBottomBar extends StatelessWidget {
-  HomePageBottomBar({super.key});
+  const HomePageBottomBar({super.key});
 
   @override
   Widget build(BuildContext context) {

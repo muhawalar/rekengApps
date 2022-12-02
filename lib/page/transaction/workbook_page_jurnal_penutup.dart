@@ -4,8 +4,8 @@ import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
-class WorkbookPage extends StatelessWidget {
-  const WorkbookPage({super.key});
+class WorkbookPageJurnalPenutup extends StatelessWidget {
+  const WorkbookPageJurnalPenutup({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +13,10 @@ class WorkbookPage extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: FutureBuilder(
-        future: model.getJurnalUmum(),
+        future: model.getJurnalPenutup(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            var jurnalUmum = snapshot.data!.docs;
+            var jurnalPenutup = snapshot.data!.docs;
             if (snapshot.connectionState == ConnectionState.done) {
               return Padding(
                 padding: const EdgeInsets.only(left: 20.0, right: 20),
@@ -28,7 +28,7 @@ class WorkbookPage extends StatelessWidget {
                       height: 500,
                       width: 650,
                       child: ListView.builder(
-                        itemCount: jurnalUmum.length,
+                        itemCount: jurnalPenutup.length,
                         itemBuilder: (context, index) {
                           return contentTable(
                             index: index,
@@ -126,11 +126,13 @@ class contentTable extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
     return FutureBuilder(
-      future: model.getJurnalUmum(),
+      future: model.getJurnalPenutup(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          var jurnalUmum = snapshot.data!.docs;
+          var jurnalPenutup = snapshot.data!.docs;
           if (snapshot.connectionState == ConnectionState.done) {
+            var tanggal = (jurnalPenutup[index!].data()
+                as Map<String, dynamic>)["tanggal"];
             return Padding(
               padding: const EdgeInsets.all(3.0),
               child: Row(
@@ -141,7 +143,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        (jurnalUmum[index!].data()
+                        (jurnalPenutup[index!].data()
                             as Map<String, dynamic>)["tanggal"],
                         style: FontStyle.dayWeekunselected,
                       ))),
@@ -156,7 +158,7 @@ class contentTable extends StatelessWidget {
                           child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          (jurnalUmum[index!].data()
+                          (jurnalPenutup[index!].data()
                               as Map<String, dynamic>)["keterangan"],
                           style: FontStyle.dayWeekunselected,
                         ),
@@ -170,7 +172,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        (jurnalUmum[index!].data()
+                        (jurnalPenutup[index!].data()
                             as Map<String, dynamic>)["ref"],
                         style: FontStyle.dayWeekunselected,
                       ))),
@@ -183,7 +185,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        "Rp. ${(jurnalUmum[index!].data()
+                        "Rp. ${(jurnalPenutup[index!].data()
                                     as Map<String, dynamic>)["debet"]}",
                         style: FontStyle.dayWeekunselected,
                       ))),
@@ -196,7 +198,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        "Rp. ${(jurnalUmum[index!].data()
+                        "Rp. ${(jurnalPenutup[index!].data()
                                     as Map<String, dynamic>)["kredit"]}",
                         style: FontStyle.dayWeekunselected,
                       ))),

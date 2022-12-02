@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
-import 'package:dropdown_below/dropdown_below.dart';
-import 'package:rekeng_apps/material/widget_reusable.dart';
-import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
 import 'package:rekeng_apps/page/transaction/graph_page.dart';
+import 'package:rekeng_apps/page/transaction/neraca_saldo.dart';
 import 'package:rekeng_apps/page/transaction/report_page.dart';
 import 'package:rekeng_apps/page/transaction/workbook_page.dart';
 import 'package:provider/provider.dart';
+import 'package:rekeng_apps/page/transaction/workbook_page_buku_besar.dart';
+import 'package:rekeng_apps/page/transaction/workbook_page_jurnal_penutup.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
-import 'package:provider/provider.dart';
 
 class TransactionPage extends StatelessWidget {
   TransactionPage({super.key});
@@ -32,7 +31,7 @@ class TransactionPage extends StatelessWidget {
     final model = Provider.of<RekengProvider>(context);
     return Scaffold(
         body: ListView(children: [
-      SizedBox(
+      const SizedBox(
         height: 20,
       ),
       Padding(
@@ -41,7 +40,7 @@ class TransactionPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             InkWell(
-                child: Container(
+                child: SizedBox(
                     height: 28,
                     width: 28,
                     child: Image.asset('assets/icons/arrow_back.png')),
@@ -56,7 +55,7 @@ class TransactionPage extends StatelessWidget {
           ],
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 10,
       ),
       // dropdown(context);
@@ -122,28 +121,28 @@ class TransactionPage extends StatelessWidget {
       //     ],
       //   ),
       // ),
-      SizedBox(
+      const SizedBox(
         height: 26,
       ),
       dropdown(context),
-      SizedBox(
+      const SizedBox(
         height: 29,
       ),
       model.selectedFilter == 'Pengeluaran'
-          ? GraphPage()
+          ? const GraphPage()
           : model.selectedFilter == 'Pemasukan'
-              ? GraphPage()
+              ? const GraphPage()
               : model.selectedFilter == 'Jurnal Umum'
-                  ? WorkbookPage()
+                  ? const WorkbookPage()
                   : model.selectedFilter == 'Buku Besar'
-                      ? WorkbookPage()
+                      ? const WorkbookPageBukuBesar()
                       : model.selectedFilter == 'Neraca Saldo'
-                          ? WorkbookPage()
+                          ? const NeracaPage()
                           : model.selectedFilter == 'Jurnal Penyesuaian'
-                              ? WorkbookPage()
+                              ? const WorkbookPage()
                               : model.selectedFilter == 'Laporan Keuangan'
-                                  ? ReportPage()
-                                  : WorkbookPage()
+                                  ? const ReportPage()
+                                  : const WorkbookPageJurnalPenutup()
     ]));
   }
 
@@ -155,22 +154,22 @@ class TransactionPage extends StatelessWidget {
         onPressed: () {
           model.newOnTapDate();
         },
-        child: Text(desc,
-            style: model!.onTapDate == false
-                ? FontStyle.dayWeekSelected
-                : FontStyle.dayWeekunselected),
         style: ElevatedButton.styleFrom(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             backgroundColor:
-                model.onTapDate == false ? ColorApp.primary : ColorApp.white));
+                model!.onTapDate == false ? ColorApp.primary : ColorApp.white),
+        child: Text(desc,
+            style: model.onTapDate == false
+                ? FontStyle.dayWeekSelected
+                : FontStyle.dayWeekunselected));
   }
 
   Row dropdown(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
     return Row(
       children: [
-        Expanded(
+        const Expanded(
           flex: 2,
           child: SizedBox(),
         ),

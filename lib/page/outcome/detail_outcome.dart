@@ -35,7 +35,7 @@ class DetailOutcome extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 59,
                   ),
                   Container(
@@ -49,7 +49,7 @@ class DetailOutcome extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 30.0, right: 30),
                       child: ListView(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 55,
                           ),
                           Column(
@@ -58,7 +58,7 @@ class DetailOutcome extends StatelessWidget {
                                 'Utang Usaha',
                                 style: FontStyle.heading5,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 23,
                               ),
                               Container(
@@ -75,7 +75,7 @@ class DetailOutcome extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 8,
                               ),
                               Text(
@@ -84,7 +84,7 @@ class DetailOutcome extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 37,
                           ),
                           Column(
@@ -95,7 +95,7 @@ class DetailOutcome extends StatelessWidget {
                                 'Transaksi Detail',
                                 style: FontStyle.heading6,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 21,
                               ),
                               Row(
@@ -112,44 +112,44 @@ class DetailOutcome extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 21,
                               ),
                               WidgetCustom.detailTransactionWidget(
                                   left: 'Nama', right: 'Setoran Modal'),
-                              SizedBox(
+                              const SizedBox(
                                 height: 21,
                               ),
                               WidgetCustom.detailTransactionWidget(
                                   left: 'Waktu', right: '10.00 AM'),
-                              SizedBox(
+                              const SizedBox(
                                 height: 21,
                               ),
                               WidgetCustom.detailTransactionWidget(
                                   left: 'Tanggal', right: 'Feb 22, 2022'),
-                              SizedBox(
+                              const SizedBox(
                                 height: 21,
                               ),
-                              Divider(
+                              const Divider(
                                 thickness: 1.5,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               WidgetCustom.detailTransactionWidget(
                                   left: 'Jumlah', right: 'Rp 48.000'),
-                              SizedBox(
+                              const SizedBox(
                                 height: 14,
                               ),
-                              Divider(
+                              const Divider(
                                 thickness: 1.5,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 57,
                               ),
                               WidgetCustom.detailTransactionWidget(
                                   left: 'Total', right: 'Rp. 48.000'),
-                              SizedBox(
+                              const SizedBox(
                                 height: 40,
                               ),
                               Container(
@@ -165,7 +165,7 @@ class DetailOutcome extends StatelessWidget {
                                       style: FontStyle.heading7),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 50,
                               )
                             ],

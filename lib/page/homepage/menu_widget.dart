@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
-import 'package:rekeng_apps/page/transaction/transaction_page.dart';
 import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
@@ -19,7 +18,7 @@ class MenuWidget extends StatelessWidget {
           'Transaksi',
           style: FontStyle.heading3,
         ),
-        SizedBox(
+        const SizedBox(
           height: 19,
         ),
         Column(
@@ -36,7 +35,7 @@ class MenuWidget extends StatelessWidget {
                       builder: (context) {
                         model.setSelectedFilterTransaction('Jurnal Umum');
                         model.newScreenIndex(1);
-                        return HomePageBottomBar();
+                        return const HomePageBottomBar();
                       },
                     ));
                   },
@@ -50,7 +49,7 @@ class MenuWidget extends StatelessWidget {
                       builder: (context) {
                         model.setSelectedFilterTransaction('Buku Besar');
                         model.newScreenIndex(1);
-                        return HomePageBottomBar();
+                        return const HomePageBottomBar();
                       },
                     ));
                   },
@@ -64,14 +63,14 @@ class MenuWidget extends StatelessWidget {
                       builder: (context) {
                         model.setSelectedFilterTransaction('Neraca Saldo');
                         model.newScreenIndex(1);
-                        return HomePageBottomBar();
+                        return const HomePageBottomBar();
                       },
                     ));
                   },
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Row(
@@ -87,7 +86,7 @@ class MenuWidget extends StatelessWidget {
                         model
                             .setSelectedFilterTransaction('Jurnal Penyesuaian');
                         model.newScreenIndex(1);
-                        return HomePageBottomBar();
+                        return const HomePageBottomBar();
                       },
                     ));
                   },
@@ -101,7 +100,7 @@ class MenuWidget extends StatelessWidget {
                       builder: (context) {
                         model.setSelectedFilterTransaction('Laporan Keuangan');
                         model.newScreenIndex(1);
-                        return HomePageBottomBar();
+                        return const HomePageBottomBar();
                       },
                     ));
                   },
@@ -115,7 +114,7 @@ class MenuWidget extends StatelessWidget {
                       builder: (context) {
                         model.setSelectedFilterTransaction('Jurnal Penutup');
                         model.newScreenIndex(1);
-                        return HomePageBottomBar();
+                        return const HomePageBottomBar();
                       },
                     ));
                   },
@@ -143,7 +142,7 @@ class MenuWidget extends StatelessWidget {
                 color: ColorApp.primary.withOpacity(0.1)),
             child: Image.asset(image),
           ),
-          SizedBox(
+          const SizedBox(
             height: 9,
           ),
           Text(
