@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
+import 'package:rekeng_apps/page/homepage/home_page.dart';
 import 'package:rekeng_apps/page/transaction/graph_page.dart';
 import 'package:rekeng_apps/page/transaction/neraca_saldo.dart';
 import 'package:rekeng_apps/page/transaction/report_page.dart';
@@ -30,9 +31,25 @@ class TransactionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
     return Scaffold(
+        // appBar: AppBar(
+        //   backgroundColor: ColorApp.white,
+        //   elevation: 0,
+        //   title: Text(
+        //     'Transaksi',
+        //     style: FontStyle.action,
+        //   ),
+        //   leading: InkWell(
+        //       child: SizedBox(
+        //           height: 28,
+        //           width: 28,
+        //           child: Image.asset('assets/icons/arrow_back.png')),
+        //       onTap: () {
+        //         model.setControllerPage(0);
+        //       }),
+        // ),
         body: ListView(children: [
       const SizedBox(
-        height: 20,
+        height: 60,
       ),
       Padding(
         padding: const EdgeInsets.only(left: 20, right: 35),
@@ -45,7 +62,12 @@ class TransactionPage extends StatelessWidget {
                     width: 28,
                     child: Image.asset('assets/icons/arrow_back.png')),
                 onTap: () {
-                  model.newScreenIndex(0);
+                  model.setControllerPage(0);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(),
+                      ));
                 }),
             Text(
               'Transaksi',

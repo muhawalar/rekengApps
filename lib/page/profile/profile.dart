@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:provider/provider.dart';
+import 'package:rekeng_apps/page/homepage/home_page.dart';
+import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -17,7 +19,7 @@ class ProfilePage extends StatelessWidget {
           Image.asset('assets/background/background.png'),
           SafeArea(
               child: Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
+                  padding: const EdgeInsets.only(top: 60.0),
                   child: Column(children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0, right: 35),
@@ -34,7 +36,11 @@ class ProfilePage extends StatelessWidget {
                               ),
                             ),
                             onTap: () {
-                              model.newScreenIndex(0);
+                              model.setControllerPage(0);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomePage()));
                             },
                           ),
                           Text(

@@ -3,18 +3,22 @@ import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:provider/provider.dart';
+import 'package:rekeng_apps/page/income/detail_income.dart';
 import 'package:rekeng_apps/provider/rekeng_model.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
+import 'package:rekeng_apps/provider/user_provider.dart';
 
 class FormInvoice extends StatelessWidget {
   FormInvoice({super.key});
 
   var formKey = GlobalKey<FormState>();
   List<String> choiceListItems = ['Kas', 'Utang Usaha'];
+  TimeOfDay currentTime = TimeOfDay.now();
 
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return Form(
       key: formKey,
       child: Column(
@@ -217,15 +221,29 @@ class FormInvoice extends StatelessWidget {
                           '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}');
 
                   final pemasukan = Pemasukan(
-                      nama: model.name.text,
-                      debet: total,
-                      tanggal:
-                          '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}');
+                    nama: model.name.text,
+                    debet: total,
+                    tanggal:
+                        '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}',
+                    userID: userProvider.user.userID,
+                  );
                   // print(model.name.text);
                   // print(total);
                   // print(
                   //     '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}');
                   model.addPemasukanNeracaSaldo(pemasukan, pemasukanJU);
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return DetailIncome(
+                        pilihan: model.selectedInvoice,
+                        jumlah: model.inputPemasukan.text,
+                        nama: model.name.text,
+                        tanggal:
+                            '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}',
+                        waktu: currentTime.format(context),
+                      );
+                    },
+                  ));
                 },
               ),
             ],

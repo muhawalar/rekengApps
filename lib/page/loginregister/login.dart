@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
+import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
 import 'package:rekeng_apps/page/loginregister/register.dart';
 import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
+import 'package:rekeng_apps/provider/user_provider.dart';
+import 'package:rekeng_apps/services/user_services/services.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -28,8 +31,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<RekengProvider>(context);
-
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       backgroundColor: ColorApp.primary,
       body: ListView(
@@ -100,20 +102,33 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                               ),
-                              onTap: () {
+                              onTap: () async {
                                 if (formKey.currentState!.validate()) {
-                                  Future.delayed(const Duration(seconds: 3), () {
-                                    showDialog(
-                                      context: context,
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return const Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    },
+                                  );
+
+                                  if (await userProvider.login(
+                                    email: emailController.text,
+                                    password: passController.text,
+                                  )) {
+                                    Navigator.push(context, MaterialPageRoute(
                                       builder: (context) {
-                                        return const Center(
-                                          child: CircularProgressIndicator(),
-                                        );
+                                        return const HomePageBottomBar();
                                       },
+                                    ));
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text('Kesalahan'),
+                                      ),
                                     );
-                                  });
-                                  model.signIn(
-                                      emailController, passController, context);
+                                  }
                                 }
                               },
                             ),

@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:provider/provider.dart';
+import 'package:rekeng_apps/page/outcome/detail_outcome.dart';
 import 'package:rekeng_apps/provider/rekeng_model.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
@@ -11,6 +14,8 @@ class FormOutcome extends StatelessWidget {
 
   var formKey = GlobalKey<FormState>();
   List<String> choiceListItems = ['Kas', 'Utang Usaha'];
+
+  TimeOfDay currentTime = TimeOfDay.now();
 
   @override
   Widget build(BuildContext context) {
@@ -226,6 +231,18 @@ class FormOutcome extends StatelessWidget {
                   // print(
                   //     '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}');
                   model.addPengeluaranNeracaSaldo(pengeluaran, pengeluaranJu);
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return DetailOutcome(
+                        pilihan: model.selectedInvoice,
+                        jumlah: model.inputPengeluaran.text,
+                        nama: model.name.text,
+                        tanggal:
+                            '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}',
+                        waktu: currentTime.format(context),
+                      );
+                    },
+                  ));
                 },
               ),
             ],

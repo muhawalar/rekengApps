@@ -3,6 +3,7 @@ import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
+import 'package:rekeng_apps/provider/user_provider.dart';
 
 class NeracaPage extends StatelessWidget {
   const NeracaPage({super.key});
@@ -10,10 +11,11 @@ class NeracaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
+    final userModel = Provider.of<UserProvider>(context);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: FutureBuilder(
-        future: model.getNeracaSaldo(),
+        future: model.getNeracaSaldo(userModel.user.userID),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var listNeracaSaldo = snapshot.data!.docs;
@@ -125,8 +127,9 @@ class contentTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
     return FutureBuilder(
-      future: model.getNeracaSaldo(),
+      future: model.getNeracaSaldo(userProvider.user.userID),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           var neracaSaldo = snapshot.data!.docs;
@@ -168,8 +171,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        "Rp. ${(neracaSaldo[index!].data()
-                                    as Map<String, dynamic>)["debet"]}",
+                        "Rp. ${(neracaSaldo[index!].data() as Map<String, dynamic>)["debet"]}",
                         style: FontStyle.dayWeekunselected,
                       ))),
                   const VerticalDivider(
@@ -181,8 +183,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        "Rp. ${(neracaSaldo[index!].data()
-                                    as Map<String, dynamic>)["kredit"]}",
+                        "Rp. ${(neracaSaldo[index!].data() as Map<String, dynamic>)["kredit"]}",
                         style: FontStyle.dayWeekunselected,
                       ))),
                 ],

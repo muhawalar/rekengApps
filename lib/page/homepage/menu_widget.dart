@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:rekeng_apps/comingsoon.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
 import 'package:provider/provider.dart';
+import 'package:rekeng_apps/page/transaction/transaction_page.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
 class MenuWidget extends StatelessWidget {
@@ -34,8 +37,9 @@ class MenuWidget extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
                         model.setSelectedFilterTransaction('Jurnal Umum');
-                        model.newScreenIndex(1);
-                        return const HomePageBottomBar();
+                        model.setControllerPage(1);
+                        return TransactionPage();
+                        // return const HomePageBottomBar();
                       },
                     ));
                   },
@@ -48,8 +52,8 @@ class MenuWidget extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
                         model.setSelectedFilterTransaction('Buku Besar');
-                        model.newScreenIndex(1);
-                        return const HomePageBottomBar();
+                        model.setControllerPage(1);
+                        return TransactionPage();
                       },
                     ));
                   },
@@ -62,8 +66,8 @@ class MenuWidget extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
                         model.setSelectedFilterTransaction('Neraca Saldo');
-                        model.newScreenIndex(1);
-                        return const HomePageBottomBar();
+                        model.setControllerPage(1);
+                        return TransactionPage();
                       },
                     ));
                   },
@@ -85,8 +89,8 @@ class MenuWidget extends StatelessWidget {
                       builder: (context) {
                         model
                             .setSelectedFilterTransaction('Jurnal Penyesuaian');
-                        model.newScreenIndex(1);
-                        return const HomePageBottomBar();
+                        model.setControllerPage(1);
+                        return TransactionPage();
                       },
                     ));
                   },
@@ -99,8 +103,8 @@ class MenuWidget extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
                         model.setSelectedFilterTransaction('Laporan Keuangan');
-                        model.newScreenIndex(1);
-                        return const HomePageBottomBar();
+                        model.setControllerPage(1);
+                        return TransactionPage();
                       },
                     ));
                   },
@@ -113,8 +117,43 @@ class MenuWidget extends StatelessWidget {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
                         model.setSelectedFilterTransaction('Jurnal Penutup');
-                        model.newScreenIndex(1);
-                        return const HomePageBottomBar();
+                        model.setControllerPage(1);
+                        return TransactionPage();
+                      },
+                    ));
+                  },
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkWell(
+                  child: menu(
+                      image: 'assets/icons/handshake.png', subtitle: 'Akad'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        model
+                            .setSelectedFilterTransaction('Jurnal Penyesuaian');
+                        model.setControllerPage(1);
+                        return TransactionPage();
+                      },
+                    ));
+                  },
+                ),
+                InkWell(
+                  child:
+                      menu(image: 'assets/icons/giving.png', subtitle: 'Infaq'),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        model.setSelectedFilterTransaction('Laporan Keuangan');
+                        model.setControllerPage(1);
+                        return TransactionPage();
                       },
                     ));
                   },
@@ -122,6 +161,9 @@ class MenuWidget extends StatelessWidget {
               ],
             ),
           ],
+        ),
+        SizedBox(
+          height: 40,
         )
       ],
     );

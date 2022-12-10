@@ -1,5 +1,33 @@
+import 'package:provider/provider.dart';
+import 'package:rekeng_apps/provider/user_provider.dart';
+
+class UserData {
+  String userID;
+  String username;
+  String email;
+  UserData(
+    this.userID,
+    this.email, {
+    required this.username,
+  });
+
+  Map<String, dynamic> toJson() => {
+        'userID': userID,
+        'username': username,
+        'email': email,
+      };
+  static UserData fromJson(Map<String, dynamic> json) {
+    return UserData(
+      json['userID'],
+      json['email'],
+      username: json['username'],
+    );
+  }
+}
+
 class Pemasukan {
   String pemasukanId;
+  String userID;
   // String pilihan;
   String nama;
   int debet;
@@ -8,6 +36,7 @@ class Pemasukan {
   // String invoiceUrl;
 
   Pemasukan({
+    this.userID = '',
     this.pemasukanId = '',
     // required this.pilihan,
     required this.nama,
@@ -18,6 +47,7 @@ class Pemasukan {
   });
 
   Map<String, dynamic> toJson() => {
+        'userId': userID,
         'kode_rek': pemasukanId,
         // 'pilihan': pilihan,
         'rekening': nama,
@@ -41,6 +71,7 @@ class Pemasukan {
 }
 
 class PemasukanJurnalUmum {
+  String userID;
   String ref;
   // String pilihan;
   String nama;
@@ -50,6 +81,7 @@ class PemasukanJurnalUmum {
   // String invoiceUrl;
 
   PemasukanJurnalUmum({
+    this.userID = '',
     this.ref = '',
     // required this.pilihan,
     required this.nama,
@@ -60,6 +92,7 @@ class PemasukanJurnalUmum {
   });
 
   Map<String, dynamic> toJson() => {
+        'userID': userID,
         'ref': ref,
         // 'pilihan': pilihan,
         'keterangan': nama,

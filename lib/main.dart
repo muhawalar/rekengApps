@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
+import 'package:rekeng_apps/page/loginregister/login.dart';
+import 'package:rekeng_apps/page/loginregister/register.dart';
+import 'package:rekeng_apps/page/outcome/detail_outcome.dart';
 import 'package:rekeng_apps/page/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:rekeng_apps/provider/user_provider.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,14 +21,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) => RekengProvider(),
-          )
-        ],
-        child: const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
-        ));
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => RekengProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => UserProvider(),
+        )
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: LoginPage(),
+      ),
+    );
   }
 }

@@ -2,9 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:rekeng_apps/material/widget_reusable.dart';
+import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
 
 class DetailOutcome extends StatelessWidget {
-  const DetailOutcome({super.key});
+  DetailOutcome(
+      {required this.pilihan,
+      required this.nama,
+      required this.waktu,
+      required this.tanggal,
+      required this.jumlah,
+      super.key});
+
+  String pilihan;
+  String nama;
+  String waktu;
+  String tanggal;
+  String jumlah;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +33,18 @@ class DetailOutcome extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Image.asset(
-                        'assets/icons/arrow_back.png',
-                        color: ColorApp.white,
+                      InkWell(
+                        child: Image.asset(
+                          'assets/icons/arrow_back.png',
+                          color: ColorApp.white,
+                        ),
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return HomePageBottomBar();
+                            },
+                          ));
+                        },
                       ),
                       Text(
                         'Transaksi Detail',
@@ -55,7 +77,7 @@ class DetailOutcome extends StatelessWidget {
                           Column(
                             children: [
                               Text(
-                                'Utang Usaha',
+                                pilihan,
                                 style: FontStyle.heading5,
                               ),
                               const SizedBox(
@@ -70,7 +92,7 @@ class DetailOutcome extends StatelessWidget {
                                         ColorApp.pengeluaran.withOpacity(0.2)),
                                 child: Center(
                                   child: Text(
-                                    'Pemasukan',
+                                    'Pengeluaran',
                                     style: FontStyle.countValueRed,
                                   ),
                                 ),
@@ -79,7 +101,7 @@ class DetailOutcome extends StatelessWidget {
                                 height: 8,
                               ),
                               Text(
-                                'Rp 48.000',
+                                'Rp. ' + jumlah,
                                 style: FontStyle.value3,
                               ),
                             ],
@@ -107,7 +129,7 @@ class DetailOutcome extends StatelessWidget {
                                     style: FontStyle.subtitle2,
                                   ),
                                   Text(
-                                    'Pemasukan',
+                                    'Pengeluaran',
                                     style: FontStyle.countValue3,
                                   )
                                 ],
@@ -116,17 +138,17 @@ class DetailOutcome extends StatelessWidget {
                                 height: 21,
                               ),
                               WidgetCustom.detailTransactionWidget(
-                                  left: 'Nama', right: 'Setoran Modal'),
+                                  left: 'Nama', right: nama),
                               const SizedBox(
                                 height: 21,
                               ),
                               WidgetCustom.detailTransactionWidget(
-                                  left: 'Waktu', right: '10.00 AM'),
+                                  left: 'Waktu', right: waktu),
                               const SizedBox(
                                 height: 21,
                               ),
                               WidgetCustom.detailTransactionWidget(
-                                  left: 'Tanggal', right: 'Feb 22, 2022'),
+                                  left: 'Tanggal', right: tanggal),
                               const SizedBox(
                                 height: 21,
                               ),
@@ -137,7 +159,7 @@ class DetailOutcome extends StatelessWidget {
                                 height: 20,
                               ),
                               WidgetCustom.detailTransactionWidget(
-                                  left: 'Jumlah', right: 'Rp 48.000'),
+                                  left: 'Jumlah', right: 'Rp. ' + jumlah),
                               const SizedBox(
                                 height: 14,
                               ),
@@ -148,7 +170,7 @@ class DetailOutcome extends StatelessWidget {
                                 height: 57,
                               ),
                               WidgetCustom.detailTransactionWidget(
-                                  left: 'Total', right: 'Rp. 48.000'),
+                                  left: 'Total', right: 'Rp. ' + jumlah),
                               const SizedBox(
                                 height: 40,
                               ),

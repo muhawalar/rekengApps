@@ -1,16 +1,28 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:rekeng_apps/page/homepage/home_page.dart';
 import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
+
 import 'package:rekeng_apps/page/loginregister/login.dart';
 import 'package:rekeng_apps/page/profile/profile.dart';
+import 'package:rekeng_apps/page/scan/scan_ai.dart';
 import 'package:rekeng_apps/page/scan/scanning.dart';
 import 'package:rekeng_apps/page/transaction/transaction_page.dart';
 import 'package:rekeng_apps/provider/rekeng_model.dart';
 
+import 'package:image_picker/image_picker.dart';
+
 class RekengProvider with ChangeNotifier {
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  bool isUser = false;
 
   num debetNeracaSaldo = 0;
   num kreditNeracaSaldo = 0;
@@ -19,6 +31,14 @@ class RekengProvider with ChangeNotifier {
 
   int pengeluaran = 184000;
   int pemasukan = 2840000;
+
+  // PersistentTabController? controller;
+  var controller = PersistentTabController(initialIndex: 0);
+
+  void setControllerPage(int newIndex) {
+    controller = PersistentTabController(initialIndex: newIndex);
+    notifyListeners();
+  }
 
   int totalKeseimbangan() {
     return pemasukan - pengeluaran;
@@ -73,11 +93,12 @@ class RekengProvider with ChangeNotifier {
 
   DateTime inputDate = DateTime.now();
 
-  List<dynamic> screens = [
+  List<Widget> screens = [
     const HomePage(),
     TransactionPage(),
-    const ScanningPage(),
-    const ProfilePage(),
+    ScanML(),
+    ScanningPage(),
+    ProfilePage()
   ];
 
   void newScreenIndex(int newIndex) {
@@ -106,6 +127,8 @@ class RekengProvider with ChangeNotifier {
           .showSnackBar(const SnackBar(content: Text('Login Success')));
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
+          isUser = true;
+          print(isUser);
           return const HomePageBottomBar();
         },
       ));
@@ -128,6 +151,7 @@ class RekengProvider with ChangeNotifier {
       UserCredential result = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim());
+
       Navigator.push(context, MaterialPageRoute(
         builder: (context) {
           return const LoginPage();
@@ -137,6 +161,22 @@ class RekengProvider with ChangeNotifier {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.message.toString())));
     }
+  }
+
+  var dataUser = {};
+  Future userData(UserData newUserData, BuildContext context) async {
+    final userData = FirebaseFirestore.instance.collection('user_data').doc();
+    newUserData.userID = userData.id;
+
+    final json = newUserData.toJson();
+    try {
+      await userData.set(json);
+      print(userData.id);
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
+    }
+    notifyListeners();
   }
 
   void setSelectedFilterTransaction(String s) {
@@ -166,8 +206,9 @@ class RekengProvider with ChangeNotifier {
     super.dispose();
   }
 
-  Future<QuerySnapshot<Object?>> getNeracaSaldo() async {
-    CollectionReference neracaSaldo = firestore.collection("neraca_saldo");
+  Future<QuerySnapshot<Object?>> getNeracaSaldo(String id) async {
+    Query<Map<String, dynamic>> neracaSaldo =
+        firestore.collection("neraca_saldo").where("userId", isEqualTo: id);
     return neracaSaldo.get();
   }
 
@@ -184,6 +225,18 @@ class RekengProvider with ChangeNotifier {
   Future<QuerySnapshot<Object?>> getJurnalPenutup() async {
     CollectionReference jurnalPenutup = firestore.collection("jurnal_penutup");
     return jurnalPenutup.get();
+  }
+
+  Future<QuerySnapshot<Object?>> getUserData() async {
+    CollectionReference userData = firestore.collection("user_data");
+    // String userID;
+    // if(UserID == user)
+    // var userData = firestore
+    //     .collection('user_data')
+    //     .doc(FirebaseAuth.instance.currentUser!.uid)
+    //     .get();
+
+    return userData.get();
   }
 
   Future addPemasukanNeracaSaldo(
@@ -241,7 +294,52 @@ class RekengProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void getAllKredit() {
-    getNeracaSaldo();
+  bool textScanning = false;
+  XFile? imageFile;
+  String scannedText = "";
+  List<String> elementText = [];
+
+  void getImageFromCamera() async {
+    try {
+      final pickedImage =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (pickedImage != null) {
+        textScanning = true;
+        imageFile = pickedImage;
+        getRecognizedText(pickedImage);
+      }
+    } catch (e) {
+      textScanning = false;
+      imageFile = null;
+      scannedText = "Error occured while scanning";
+    }
+
+    notifyListeners();
+  }
+
+  void getRecognizedText(XFile image) async {
+    final inputImage = InputImage.fromFilePath(image.path);
+    final textDetector = GoogleMlKit.vision.textRecognizer();
+    RecognizedText recognizedText = await textDetector.processImage(inputImage);
+    await textDetector.close();
+    scannedText = "";
+    for (TextBlock block in recognizedText.blocks) {
+      for (TextLine line in block.lines) {
+        for (TextElement element in line.elements) {
+          scannedText = scannedText + element.text;
+          // elementText.add(element.text);
+        }
+      }
+    }
+
+    // print(elementText.length);
+    // for (int i = 0; i <= elementText.length; i++) {
+    //   print(elementText[i]);
+
+    // int value = int.parse(elementText[i]);
+    // print(value);
+    // }
+    textScanning = false;
+    notifyListeners();
   }
 }
