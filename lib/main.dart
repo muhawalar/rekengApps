@@ -3,6 +3,8 @@ import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
 import 'package:rekeng_apps/page/loginregister/login.dart';
 import 'package:rekeng_apps/page/loginregister/register.dart';
 import 'package:rekeng_apps/page/outcome/detail_outcome.dart';
+import 'package:rekeng_apps/page/scan/scan_ai.dart';
+import 'package:rekeng_apps/page/scan/scanning.dart';
 import 'package:rekeng_apps/page/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginPage(),
+        home: HomePageBottomBar(),
       ),
     );
   }

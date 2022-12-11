@@ -35,17 +35,14 @@ class DetailIncome extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         InkWell(
-                            child: Image.asset(
-                              'assets/icons/arrow_back.png',
-                              color: ColorApp.white,
-                            ),
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(
-                                builder: (context) {
-                                  return HomePageBottomBar();
-                                },
-                              ));
-                            }),
+                          child: Image.asset(
+                            'assets/icons/arrow_back.png',
+                            color: ColorApp.white,
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                        ),
                         Text(
                           'Transaksi Detail',
                           style: FontStyle.heading4,

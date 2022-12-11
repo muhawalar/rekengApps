@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
@@ -63,8 +61,6 @@ class RekengProvider with ChangeNotifier {
   }
 
   void countDebetNeracaSaldo(num value) {
-    debetNeracaSaldo += value;
-    print(debetNeracaSaldo);
     notifyListeners();
   }
 
@@ -212,18 +208,22 @@ class RekengProvider with ChangeNotifier {
     return neracaSaldo.get();
   }
 
-  Future<QuerySnapshot<Object?>> getJurnalUmum() async {
-    CollectionReference jurnalUmum = firestore.collection("jurnal_umum");
+  Future<QuerySnapshot<Object?>> getJurnalUmum(String id) async {
+    Query<Map<String, dynamic>> jurnalUmum =
+        firestore.collection("jurnal_umum").where("userId", isEqualTo: id);
     return jurnalUmum.get();
   }
 
-  Future<QuerySnapshot<Object?>> getBukuBesar() async {
-    CollectionReference bukuBesar = firestore.collection("buku_besar");
+  Future<QuerySnapshot<Object?>> getBukuBesar(String id) async {
+    Query<Map<String, dynamic>> bukuBesar =
+        firestore.collection("buku_besar").where("userId", isEqualTo: id);
+
     return bukuBesar.get();
   }
 
-  Future<QuerySnapshot<Object?>> getJurnalPenutup() async {
-    CollectionReference jurnalPenutup = firestore.collection("jurnal_penutup");
+  Future<QuerySnapshot<Object?>> getJurnalPenutup(String id) async {
+    Query<Map<String, dynamic>> jurnalPenutup =
+        firestore.collection("jurnal_penutup").where("userId", isEqualTo: id);
     return jurnalPenutup.get();
   }
 
@@ -301,6 +301,7 @@ class RekengProvider with ChangeNotifier {
 
   void getImageFromCamera() async {
     try {
+      scannedText = '';
       final pickedImage =
           await ImagePicker().pickImage(source: ImageSource.gallery);
       if (pickedImage != null) {
@@ -322,12 +323,13 @@ class RekengProvider with ChangeNotifier {
     final textDetector = GoogleMlKit.vision.textRecognizer();
     RecognizedText recognizedText = await textDetector.processImage(inputImage);
     await textDetector.close();
-    scannedText = "";
+
     for (TextBlock block in recognizedText.blocks) {
       for (TextLine line in block.lines) {
         for (TextElement element in line.elements) {
-          scannedText = scannedText + element.text;
-          // elementText.add(element.text);
+          scannedText = scannedText + line.text + " ";
+          // print(scannedText);
+          // elementText.add(scannedText);
         }
       }
     }
@@ -341,5 +343,33 @@ class RekengProvider with ChangeNotifier {
     // }
     textScanning = false;
     notifyListeners();
+  }
+
+  List<Map<String, dynamic>> kreditValue = [];
+  int totalKreditNeracaSaldo = 0;
+
+  void getKreditFromFirebase() async {
+    final kredit = await FirebaseFirestore.instance
+        .collection('neraca_saldo')
+        .where('kredit')
+        .get();
+
+    kreditValue = kredit.docs.map((e) => e.data()).toList();
+    notifyListeners();
+  }
+
+  String getRupiah() {
+    final pattern = RegExp(r'Rp\s*\d{1,3}(\.\d{3})*(,\d{2})?');
+    final matches = pattern.allMatches(scannedText);
+    String? value;
+
+    if (scannedText == null) {
+      return '';
+    } else {
+      for (final match in matches) {
+        value = match.group(0);
+      }
+      return value!;
+    }
   }
 }

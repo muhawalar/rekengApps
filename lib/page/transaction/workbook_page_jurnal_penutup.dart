@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:provider/provider.dart';
+import 'package:rekeng_apps/provider/rekeng_model.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
+import 'package:rekeng_apps/provider/user_provider.dart';
 
 class WorkbookPageJurnalPenutup extends StatelessWidget {
   const WorkbookPageJurnalPenutup({super.key});
@@ -10,10 +12,12 @@ class WorkbookPageJurnalPenutup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
+    final userData = Provider.of<UserProvider>(context);
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: FutureBuilder(
-        future: model.getJurnalPenutup(),
+        future: model.getJurnalPenutup(userData.user.userID),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var jurnalPenutup = snapshot.data!.docs;
@@ -125,8 +129,9 @@ class contentTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
+    final userData = Provider.of<UserProvider>(context);
     return FutureBuilder(
-      future: model.getJurnalPenutup(),
+      future: model.getJurnalPenutup(userData.user.userID),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           var jurnalPenutup = snapshot.data!.docs;
@@ -185,8 +190,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        "Rp. ${(jurnalPenutup[index!].data()
-                                    as Map<String, dynamic>)["debet"]}",
+                        "Rp. ${(jurnalPenutup[index!].data() as Map<String, dynamic>)["debet"]}",
                         style: FontStyle.dayWeekunselected,
                       ))),
                   const VerticalDivider(
@@ -198,8 +202,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        "Rp. ${(jurnalPenutup[index!].data()
-                                    as Map<String, dynamic>)["kredit"]}",
+                        "Rp. ${(jurnalPenutup[index!].data() as Map<String, dynamic>)["kredit"]}",
                         style: FontStyle.dayWeekunselected,
                       ))),
                 ],

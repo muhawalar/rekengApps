@@ -213,7 +213,7 @@ class FormOutcome extends StatelessWidget {
                 ),
                 onTap: () {
                   int? total = int.parse(model.inputPengeluaran.text);
-                  model.totalPengeluaran(total);
+                  // model.totalPengeluaran(total);
                   // final nama = model.name;
                   final pengeluaranJu = PengeluaranJurnalUmum(
                       nama: model.name.text,

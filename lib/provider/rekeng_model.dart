@@ -92,7 +92,7 @@ class PemasukanJurnalUmum {
   });
 
   Map<String, dynamic> toJson() => {
-        'userID': userID,
+        'userId': userID,
         'ref': ref,
         // 'pilihan': pilihan,
         'keterangan': nama,
@@ -116,6 +116,7 @@ class PemasukanJurnalUmum {
 }
 
 class Pengeluaran {
+  String userID;
   String pengeluaranId;
   // String pilihan;
   String nama;
@@ -125,6 +126,7 @@ class Pengeluaran {
   // String invoiceUrl;
 
   Pengeluaran({
+    this.userID = '',
     this.pengeluaranId = '',
     // required this.pilihan,
     required this.nama,
@@ -135,6 +137,7 @@ class Pengeluaran {
   });
 
   Map<String, dynamic> toJson() => {
+        'userId': userID,
         'kode_rek': pengeluaranId,
         // 'pilihan': pilihan,
         'rekening': nama,
@@ -158,6 +161,7 @@ class Pengeluaran {
 }
 
 class PengeluaranJurnalUmum {
+  String userID;
   String ref;
   // String pilihan;
   String nama;
@@ -167,6 +171,7 @@ class PengeluaranJurnalUmum {
   // String invoiceUrl;
 
   PengeluaranJurnalUmum({
+    this.userID = '',
     this.ref = '',
     // required this.pilihan,
     required this.nama,
@@ -177,6 +182,7 @@ class PengeluaranJurnalUmum {
   });
 
   Map<String, dynamic> toJson() => {
+        'userId': userID,
         'ref': ref,
         // 'pilihan': pilihan,
         'keterangan': nama,

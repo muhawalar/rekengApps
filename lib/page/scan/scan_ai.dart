@@ -3,60 +3,48 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
 class ScanML extends StatelessWidget {
-  ScanML({super.key});
+  const ScanML({super.key});
 
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
-    // print(model.scannedText);
-    // var splitRp = model.scannedText.split(':').last;
-    // var getRp = splitRp.split('a').first;
-    // String text = '';
-    // String text = model.scannedText.split(":")[15];
+    final pattern = RegExp(r'RP\s*\d{1,3}(\.\d{3})*(,\d{2})?');
+    final matches = pattern.allMatches(model.scannedText);
+    String? value;
 
-    // for (int i = 0; i < model.elementText.length; i++) {
-    //   if (model.elementText.) {
-    //     text = model.elementText[i];
-    //   }
-    // }
+    for (final match in matches) {
+      value = match.group(0);
+    }
+    print(value);
 
-    // int intText = int.parse(text);
-
-    // model.scannedText =
-    //     model.scannedText.replaceAll(new RegExp('^[a-z]:', dotAll: true), ' ');
-    // int scannedTextIntegerOnly = int.parse(
-    //   model.scannedText,
-    //   // radix: 32,
-    // );
-    // assert(scannedTextIntegerOnly is int);
-    // print(scannedTextIntegerOnly);
     return Scaffold(
-      body: ListView(
+      body: Column(
         children: [
           InkWell(
-            child: Container(
-                child: Column(
-              children: [
-                Image.file(File(model.imageFile!.path)),
-                Text(model.scannedText.toString())
-                // Text(model.scannedText.startsWith("RP").toString())
-                // Expanded(
-                //   child: ListView.builder(
-                //     itemCount: model.scannedText.length,
-                //     itemBuilder: (BuildContext context, int index) {
-                //       return Text(model.scannedText.toString());
-                //     },
-                //   ),
-                // )
-              ],
-            )),
+            child: Container(child: Image.file(File(model.imageFile!.path))),
             onTap: () {
               model.getRecognizedText(model.imageFile!);
+              model.getKreditFromFirebase();
             },
           ),
+
+          Text(value.toString())
+
+          // Expanded(
+          //     child: ListView.builder(
+          //   itemCount: result.length,
+          //   itemBuilder: (context, index) {
+          //     return Container(
+          //       height: 100,
+          //       color: ColorApp.four,
+          //       child: Text(result[index]),
+          //     );
+          //   },
+          // ))
         ],
       ),
     );

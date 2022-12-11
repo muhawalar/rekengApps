@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
@@ -218,7 +219,8 @@ class FormInvoice extends StatelessWidget {
                       nama: model.name.text,
                       debet: total,
                       tanggal:
-                          '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}');
+                          '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}',
+                      userID: userProvider.user.userID);
 
                   final pemasukan = Pemasukan(
                     nama: model.name.text,

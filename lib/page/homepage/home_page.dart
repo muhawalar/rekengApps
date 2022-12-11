@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
     UserProvider userProvider = Provider.of<UserProvider>(context);
+
     return Scaffold(
       body: FutureBuilder(
           future: model.getUserData(),

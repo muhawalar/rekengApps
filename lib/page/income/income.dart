@@ -22,7 +22,7 @@ class Income extends StatelessWidget {
                 Image.asset('assets/background/background.png'),
                 SafeArea(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
+                    padding: const EdgeInsets.only(top: 60.0),
                     child: Column(
                       children: [
                         Row(

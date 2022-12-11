@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:provider/provider.dart';
+import 'package:rekeng_apps/provider/rekeng_model.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
+import 'package:rekeng_apps/provider/user_provider.dart';
 
 class WorkbookPageBukuBesar extends StatelessWidget {
   const WorkbookPageBukuBesar({super.key});
@@ -10,10 +13,11 @@ class WorkbookPageBukuBesar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
+    final userData = Provider.of<UserProvider>(context);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: FutureBuilder(
-        future: model.getBukuBesar(),
+        future: model.getBukuBesar(userData.user.userID),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var bukuBesar = snapshot.data!.docs;
@@ -34,8 +38,8 @@ class WorkbookPageBukuBesar extends StatelessWidget {
                               as Map<String, dynamic>)["kredit"];
                           num debitBukuBesar = (bukuBesar[index].data()
                               as Map<String, dynamic>)["debet"];
-                          model.countKreditBukuBesar(kreditBukuBesar);
-                          model.countDebetBukuBesar(kreditBukuBesar);
+                          // model.countKreditBukuBesar(kreditBukuBesar);
+                          // model.countDebetBukuBesar(kreditBukuBesar);
                           return contentTable(
                             index: index,
                           );
@@ -131,8 +135,9 @@ class contentTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
+    final userData = Provider.of<UserProvider>(context);
     return FutureBuilder(
-      future: model.getBukuBesar(),
+      future: model.getBukuBesar(userData.user.userID),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           var bukuBesar = snapshot.data!.docs;
@@ -189,8 +194,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        "Rp. ${(bukuBesar[index!].data()
-                                    as Map<String, dynamic>)["debet"]}",
+                        "Rp. ${(bukuBesar[index!].data() as Map<String, dynamic>)["debet"]}",
                         style: FontStyle.dayWeekunselected,
                       ))),
                   const VerticalDivider(
@@ -202,8 +206,7 @@ class contentTable extends StatelessWidget {
                       color: ColorApp.three,
                       child: Center(
                           child: Text(
-                        "Rp. ${(bukuBesar[index!].data()
-                                    as Map<String, dynamic>)["kredit"]}",
+                        "Rp. ${(bukuBesar[index!].data() as Map<String, dynamic>)["kredit"]}",
                         style: FontStyle.dayWeekunselected,
                       ))),
                 ],
