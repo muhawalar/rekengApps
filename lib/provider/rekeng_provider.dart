@@ -30,6 +30,8 @@ class RekengProvider with ChangeNotifier {
   int pengeluaran = 184000;
   int pemasukan = 2840000;
 
+  String? resultScan;
+
   // PersistentTabController? controller;
   var controller = PersistentTabController(initialIndex: 0);
 
@@ -205,18 +207,29 @@ class RekengProvider with ChangeNotifier {
   Future<QuerySnapshot<Object?>> getNeracaSaldo(String id) async {
     Query<Map<String, dynamic>> neracaSaldo =
         firestore.collection("neraca_saldo").where("userId", isEqualTo: id);
+    var kredit = neracaSaldo.where('debet');
+    finalKredit = kredit.snapshots();
+
+    // await finalKredit.then((result) {
+    //   print("result:$result");
+    // });
     return neracaSaldo.get();
   }
 
   Future<QuerySnapshot<Object?>> getJurnalUmum(String id) async {
     Query<Map<String, dynamic>> jurnalUmum =
         firestore.collection("jurnal_umum").where("userId", isEqualTo: id);
+
     return jurnalUmum.get();
   }
+
+  var finalKredit;
 
   Future<QuerySnapshot<Object?>> getBukuBesar(String id) async {
     Query<Map<String, dynamic>> bukuBesar =
         firestore.collection("buku_besar").where("userId", isEqualTo: id);
+    var kredit = bukuBesar.where('debet');
+    finalKredit = kredit.snapshots();
 
     return bukuBesar.get();
   }
@@ -358,18 +371,18 @@ class RekengProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String getRupiah() {
+  String? getRupiah() {
     final pattern = RegExp(r'Rp\s*\d{1,3}(\.\d{3})*(,\d{2})?');
     final matches = pattern.allMatches(scannedText);
     String? value;
 
     if (scannedText == null) {
-      return '';
+      return null;
     } else {
       for (final match in matches) {
         value = match.group(0);
       }
-      return value!;
+      return value;
     }
   }
 }

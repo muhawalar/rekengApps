@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
-import 'package:rekeng_apps/page/outcome/form_outcome.dart';
+import 'package:rekeng_apps/page/income/form_invoice.dart';
 import 'package:provider/provider.dart';
+import 'package:rekeng_apps/page/scan/form_income_scan.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
-class Outcome extends StatelessWidget {
-  const Outcome({super.key});
+class IncomeScan extends StatelessWidget {
+  const IncomeScan({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class Outcome extends StatelessWidget {
                 Image.asset('assets/background/background.png'),
                 SafeArea(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 60.0),
+                    padding: const EdgeInsets.only(top: 20.0),
                     child: Column(
                       children: [
                         Row(
@@ -38,12 +39,11 @@ class Outcome extends StatelessWidget {
                                 ),
                               ),
                               onTap: () {
-                                model.newScreenIndex(2);
                                 Navigator.pop(context);
                               },
                             ),
                             Text(
-                              'Tambah Pengeluaran',
+                              'Tambah Pemasukan',
                               style: FontStyle.heading4,
                             ),
                             Icon(
@@ -74,7 +74,7 @@ class Outcome extends StatelessWidget {
                                 ]),
                             child: Padding(
                                 padding: const EdgeInsets.all(20.0),
-                                child: FormOutcome()),
+                                child: FormIncomeScan()),
                           ),
                         )
                       ],

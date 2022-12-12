@@ -28,7 +28,7 @@ class DetailIncome extends StatelessWidget {
             Image.asset('assets/background/background.png'),
             SafeArea(
               child: Padding(
-                padding: const EdgeInsets.only(top: 60.0),
+                padding: const EdgeInsets.only(top: 20.0),
                 child: Column(
                   children: [
                     Row(
@@ -134,17 +134,17 @@ class DetailIncome extends StatelessWidget {
                                   height: 21,
                                 ),
                                 WidgetCustom.detailTransactionWidget(
-                                    left: 'Nama', right: 'Setoran Modal'),
+                                    left: 'Nama', right: nama),
                                 const SizedBox(
                                   height: 21,
                                 ),
                                 WidgetCustom.detailTransactionWidget(
-                                    left: 'Waktu', right: '10.00 AM'),
+                                    left: 'Waktu', right: waktu),
                                 const SizedBox(
                                   height: 21,
                                 ),
                                 WidgetCustom.detailTransactionWidget(
-                                    left: 'Tanggal', right: 'Feb 22, 2022'),
+                                    left: 'Tanggal', right: tanggal),
                                 const SizedBox(
                                   height: 21,
                                 ),
@@ -155,7 +155,7 @@ class DetailIncome extends StatelessWidget {
                                   height: 20,
                                 ),
                                 WidgetCustom.detailTransactionWidget(
-                                    left: 'Jumlah', right: 'Rp 48.000'),
+                                    left: 'Jumlah', right: jumlah),
                                 const SizedBox(
                                   height: 14,
                                 ),
@@ -166,7 +166,7 @@ class DetailIncome extends StatelessWidget {
                                   height: 57,
                                 ),
                                 WidgetCustom.detailTransactionWidget(
-                                    left: 'Total', right: 'Rp. 48.000'),
+                                    left: 'Total', right: jumlah),
                                 const SizedBox(
                                   height: 40,
                                 ),

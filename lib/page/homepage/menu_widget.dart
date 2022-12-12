@@ -137,10 +137,10 @@ class MenuWidget extends StatelessWidget {
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        model
-                            .setSelectedFilterTransaction('Jurnal Penyesuaian');
+                        // model
+                        //     .setSelectedFilterTransaction('Jurnal Penyesuaian');
                         model.setControllerPage(1);
-                        return TransactionPage();
+                        return CoomingSoon();
                       },
                     ));
                   },
@@ -151,9 +151,9 @@ class MenuWidget extends StatelessWidget {
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        model.setSelectedFilterTransaction('Laporan Keuangan');
+                        // model.setSelectedFilterTransaction('Laporan Keuangan');
                         model.setControllerPage(1);
-                        return TransactionPage();
+                        return CoomingSoon();
                       },
                     ));
                   },

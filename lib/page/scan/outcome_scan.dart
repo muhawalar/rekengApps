@@ -4,10 +4,11 @@ import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
 import 'package:rekeng_apps/page/outcome/form_outcome.dart';
 import 'package:provider/provider.dart';
+import 'package:rekeng_apps/page/scan/form_outcome_scan.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 
-class Outcome extends StatelessWidget {
-  const Outcome({super.key});
+class OutcomeScan extends StatelessWidget {
+  const OutcomeScan({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class Outcome extends StatelessWidget {
                 Image.asset('assets/background/background.png'),
                 SafeArea(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 60.0),
+                    padding: const EdgeInsets.only(top: 20.0),
                     child: Column(
                       children: [
                         Row(
@@ -74,7 +75,7 @@ class Outcome extends StatelessWidget {
                                 ]),
                             child: Padding(
                                 padding: const EdgeInsets.all(20.0),
-                                child: FormOutcome()),
+                                child: FormOutcomeScan()),
                           ),
                         )
                       ],

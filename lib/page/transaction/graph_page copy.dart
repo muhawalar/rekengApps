@@ -6,8 +6,8 @@ import 'package:rekeng_apps/provider/rekeng_model.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 import 'package:rekeng_apps/provider/user_provider.dart';
 
-class GraphPageIncome extends StatelessWidget {
-  const GraphPageIncome({super.key});
+class GraphPageOutcome extends StatelessWidget {
+  const GraphPageOutcome({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,21 +23,21 @@ class GraphPageIncome extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.70,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  var debet = (dataPemasukan[index].data()
+                  var kredit = (dataPemasukan[index].data()
                       as Map<String, dynamic>)["kredit"];
-                  return debet == 0
+                  return kredit != 0
                       ? index.isEven
                           ? listPemasukanSecond(
                               tanggal: (dataPemasukan[index].data()
                                   as Map<String, dynamic>)["tanggal"],
                               jumlah: (dataPemasukan[index].data()
-                                      as Map<String, dynamic>)["debet"]
+                                      as Map<String, dynamic>)["kredit"]
                                   .toString())
                           : listPemasukan(
                               tanggal: (dataPemasukan[index].data()
                                   as Map<String, dynamic>)["tanggal"],
                               jumlah: (dataPemasukan[index].data()
-                                      as Map<String, dynamic>)["debet"]
+                                      as Map<String, dynamic>)["kredit"]
                                   .toString())
                       : Container();
                 },

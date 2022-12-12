@@ -38,12 +38,7 @@ class Income extends StatelessWidget {
                                 ),
                               ),
                               onTap: () {
-                                model.newScreenIndex(2);
-                                Navigator.push(context, MaterialPageRoute(
-                                  builder: (context) {
-                                    return const HomePageBottomBar();
-                                  },
-                                ));
+                                Navigator.pop(context);
                               },
                             ),
                             Text(

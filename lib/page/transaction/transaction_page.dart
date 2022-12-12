@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:rekeng_apps/page/homepage/home_page.dart';
+import 'package:rekeng_apps/page/transaction/graph_page%20copy.dart';
 import 'package:rekeng_apps/page/transaction/graph_page.dart';
 import 'package:rekeng_apps/page/transaction/neraca_saldo.dart';
 import 'package:rekeng_apps/page/transaction/report_page.dart';
@@ -151,9 +152,9 @@ class TransactionPage extends StatelessWidget {
         height: 29,
       ),
       model.selectedFilter == 'Pengeluaran'
-          ? const GraphPage()
+          ? const GraphPageOutcome()
           : model.selectedFilter == 'Pemasukan'
-              ? const GraphPage()
+              ? const GraphPageIncome()
               : model.selectedFilter == 'Jurnal Umum'
                   ? const WorkbookPage()
                   : model.selectedFilter == 'Buku Besar'

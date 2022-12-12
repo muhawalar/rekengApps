@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:rekeng_apps/page/homepage/home_page.dart';
 import 'package:rekeng_apps/page/homepage/home_page_navbar.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
+import 'package:rekeng_apps/provider/user_provider.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -12,6 +13,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
+    final userData = Provider.of<UserProvider>(context);
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(children: [
@@ -58,14 +60,23 @@ class ProfilePage extends StatelessWidget {
                     const SizedBox(
                       height: 110,
                     ),
-                    const CircleAvatar(
-                      radius: 50,
+                    Container(
+                      height: 120,
+                      width: 120,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(200),
+                          color: Colors.grey.shade400),
+                      child: Icon(
+                        Icons.person_rounded,
+                        size: 100,
+                        color: ColorApp.white,
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
                     ),
                     Text(
-                      'User',
+                      userData.user.username,
                       style: FontStyle.value3,
                     ),
                     const SizedBox(
