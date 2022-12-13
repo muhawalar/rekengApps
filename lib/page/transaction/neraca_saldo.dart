@@ -35,8 +35,6 @@ class NeracaPage extends StatelessWidget {
                         num debetNeracaSaldo = (listNeracaSaldo[index].data()
                             as Map<String, dynamic>)["debet"];
 
-                        model.countDebetNeracaSaldo(debetNeracaSaldo);
-                        model.countKreditNeracaSaldo(kreditNeracaSaldo);
                         return contentTable(
                           index: index,
                         );

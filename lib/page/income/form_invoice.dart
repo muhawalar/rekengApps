@@ -213,7 +213,7 @@ class FormInvoice extends StatelessWidget {
                 ),
                 onTap: () {
                   int? total = int.parse(model.inputPemasukan.text);
-                  model.totalPemasukan(total);
+
                   // final nama = model.name;
                   final pemasukanJU = PemasukanJurnalUmum(
                       nama: model.name.text,

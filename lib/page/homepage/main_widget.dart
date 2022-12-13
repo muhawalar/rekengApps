@@ -34,7 +34,7 @@ class MainWidget extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  'Rp. ' + model.totalKeseimbangan().toString(),
+                  'Rp. ' + '${model.kredit + model.debet}',
                   style: FontStyle.value,
                 ),
                 SizedBox(
@@ -69,7 +69,7 @@ class MainWidget extends StatelessWidget {
                           height: 6,
                         ),
                         Text(
-                          'Rp. ' + model.pemasukan.toString(),
+                          'Rp. ' + model.debet.toString(),
                           style: FontStyle.value2,
                         ),
                       ],
@@ -100,7 +100,7 @@ class MainWidget extends StatelessWidget {
                           height: 6,
                         ),
                         Text(
-                          'Rp. ' + model.pengeluaran.toString(),
+                          'Rp. ' + model.kredit.toString(),
                           style: FontStyle.value2,
                         ),
                       ],

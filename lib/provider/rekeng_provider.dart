@@ -22,13 +22,8 @@ class RekengProvider with ChangeNotifier {
 
   bool isUser = false;
 
-  num debetNeracaSaldo = 0;
-  num kreditNeracaSaldo = 0;
-  num kreditBukuBesar = 0;
-  num debetBukuBesar = 0;
-
-  int pengeluaran = 184000;
-  int pemasukan = 2840000;
+  num kredit = 0;
+  num debet = 0;
 
   String? resultScan;
 
@@ -40,46 +35,46 @@ class RekengProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  int totalKeseimbangan() {
-    return pemasukan - pengeluaran;
-  }
+  // int totalKeseimbangan() {
+  //   return pemasukan - pengeluaran;
+  // }
 
-  void totalPengeluaran(int total) {
-    total += pengeluaran;
-    print(pengeluaran);
-    notifyListeners();
-  }
+  // void totalPengeluaran(int total) {
+  //   total += pengeluaran;
+  //   print(pengeluaran);
+  //   notifyListeners();
+  // }
 
-  void totalPemasukan(int total) {
-    total += pemasukan;
-    print(pemasukan);
-    notifyListeners();
-  }
+  // void totalPemasukan(int total) {
+  //   total += pemasukan;
+  //   print(pemasukan);
+  //   notifyListeners();
+  // }
 
-  void totalDebet() {}
+  // void totalDebet() {}
 
-  num totalKredit() {
-    return kreditBukuBesar + kreditNeracaSaldo;
-  }
+  // num totalKredit() {
+  //   return kreditBukuBesar + kreditNeracaSaldo;
+  // }
 
-  void countDebetNeracaSaldo(num value) {
-    notifyListeners();
-  }
+  // void countDebetNeracaSaldo(num value) {
+  //   notifyListeners();
+  // }
 
-  void countKreditNeracaSaldo(num value) {
-    kreditNeracaSaldo += value;
-    notifyListeners();
-  }
+  // void countKreditNeracaSaldo(num value) {
+  //   kreditNeracaSaldo += value;
+  //   notifyListeners();
+  // }
 
-  void countKreditBukuBesar(num value) {
-    kreditBukuBesar += value;
-    notifyListeners();
-  }
+  // void countKreditBukuBesar(num value) {
+  //   kreditBukuBesar += value;
+  //   notifyListeners();
+  // }
 
-  void countDebetBukuBesar(num value) {
-    debetBukuBesar += value;
-    notifyListeners();
-  }
+  // void countDebetBukuBesar(num value) {
+  //   debetBukuBesar += value;
+  //   notifyListeners();
+  // }
 
   int currentIndex = 0;
 

@@ -24,7 +24,13 @@ class GraphPageIncome extends StatelessWidget {
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   var debet = (dataPemasukan[index].data()
-                      as Map<String, dynamic>)["kredit"];
+                      as Map<String, dynamic>)["debet"];
+                  for (int i = 1; i <= index; i++) {
+                    var debet = (dataPemasukan[index].data()
+                        as Map<String, dynamic>)["debet"];
+                    model.debet = model.debet + debet;
+                  }
+                  print(model.debet);
                   return debet == 0
                       ? index.isEven
                           ? listPemasukanSecond(
@@ -45,7 +51,7 @@ class GraphPageIncome extends StatelessWidget {
             );
           }
         }
-        return CircularProgressIndicator();
+        return Container();
       },
     );
   }

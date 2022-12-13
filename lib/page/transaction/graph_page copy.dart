@@ -25,6 +25,8 @@ class GraphPageOutcome extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var kredit = (dataPemasukan[index].data()
                       as Map<String, dynamic>)["kredit"];
+                  model.kredit = model.kredit + kredit;
+                  print(kredit);
                   return kredit != 0
                       ? index.isEven
                           ? listPemasukanSecond(
