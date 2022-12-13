@@ -7,6 +7,7 @@ import 'package:rekeng_apps/page/scan/scan_ai.dart';
 import 'package:rekeng_apps/page/scan/scanning.dart';
 import 'package:rekeng_apps/page/splash_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:rekeng_apps/page/transaction/neraca_saldo.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:rekeng_apps/provider/user_provider.dart';
@@ -31,9 +32,9 @@ class MyApp extends StatelessWidget {
           create: (context) => UserProvider(),
         )
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+        home: HomePageBottomBar(),
       ),
     );
   }

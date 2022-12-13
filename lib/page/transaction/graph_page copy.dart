@@ -23,25 +23,25 @@ class GraphPageOutcome extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.70,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  var kredit = (dataPemasukan[index].data()
-                      as Map<String, dynamic>)["kredit"];
-                  model.kredit = model.kredit + kredit;
-                  print(kredit);
-                  return kredit != 0
-                      ? index.isEven
-                          ? listPemasukanSecond(
-                              tanggal: (dataPemasukan[index].data()
-                                  as Map<String, dynamic>)["tanggal"],
-                              jumlah: (dataPemasukan[index].data()
-                                      as Map<String, dynamic>)["kredit"]
-                                  .toString())
-                          : listPemasukan(
-                              tanggal: (dataPemasukan[index].data()
-                                  as Map<String, dynamic>)["tanggal"],
-                              jumlah: (dataPemasukan[index].data()
-                                      as Map<String, dynamic>)["kredit"]
-                                  .toString())
-                      : Container();
+                  // for (int i = 0; i <= index; i++) {
+                  //   var kredit = (dataPemasukan[index].data()
+                  //       as Map<String, dynamic>)["kredit"];
+                  //   model.debet = model.kredit + kredit;
+                  // }
+
+                  return index.isEven
+                      ? listPemasukanSecond(
+                          tanggal: (dataPemasukan[index].data()
+                              as Map<String, dynamic>)["tanggal"],
+                          jumlah: (dataPemasukan[index].data()
+                                  as Map<String, dynamic>)["kredit"]
+                              .toString())
+                      : listPemasukan(
+                          tanggal: (dataPemasukan[index].data()
+                              as Map<String, dynamic>)["tanggal"],
+                          jumlah: (dataPemasukan[index].data()
+                                  as Map<String, dynamic>)["kredit"]
+                              .toString());
                 },
               ),
             );

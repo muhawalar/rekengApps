@@ -22,8 +22,8 @@ class RekengProvider with ChangeNotifier {
 
   bool isUser = false;
 
-  num kredit = 0;
-  num debet = 0;
+  int pemasukan = 0;
+  int pengeluaran = 0;
 
   String? resultScan;
 
@@ -208,7 +208,40 @@ class RekengProvider with ChangeNotifier {
     // await finalKredit.then((result) {
     //   print("result:$result");
     // });
+
+    print(finalKredit);
+
     return neracaSaldo.get();
+  }
+
+  Future<int> getTotalPemasukan(String id) async {
+    int total = 0;
+    Query<Map<String, dynamic>> neracaSaldo =
+        firestore.collection("neraca_saldo").where("userId", isEqualTo: id);
+    var kredit = await neracaSaldo.where('debet').get();
+
+    kredit.docs.forEach((element) {
+      total += element.data()['debet'] as int;
+      print(total);
+    });
+
+    print("TOTAL : $total");
+    return total;
+  }
+
+  Future<int> getTotalPengeluaran(String id) async {
+    int total = 0;
+    Query<Map<String, dynamic>> neracaSaldo =
+        firestore.collection("neraca_saldo").where("userId", isEqualTo: id);
+    var kredit = await neracaSaldo.where('kredit').get();
+
+    kredit.docs.forEach((element) {
+      total += element.data()['kredit'] as int;
+      print(total);
+    });
+
+    print("TOTAL : $total");
+    return total;
   }
 
   Future<QuerySnapshot<Object?>> getJurnalUmum(String id) async {
@@ -259,7 +292,7 @@ class RekengProvider with ChangeNotifier {
         FirebaseFirestore.instance.collection('jurnal_penutup').doc();
 
     final pemasukanBB =
-        FirebaseFirestore.instance.collection('buku_besar').doc();
+        FirebaseFirestore.instance.collection('buku_besar_second').doc();
 
     final json = pemasukan.toJson();
     final json1 = pemasukanJurnalUmum.toJson();

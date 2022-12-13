@@ -160,7 +160,7 @@ class TransactionPage extends StatelessWidget {
                   : model.selectedFilter == 'Buku Besar'
                       ? const WorkbookPageBukuBesar()
                       : model.selectedFilter == 'Neraca Saldo'
-                          ? const NeracaPage()
+                          ? NeracaPage()
                           : model.selectedFilter == 'Jurnal Penyesuaian'
                               ? const WorkbookPage()
                               : model.selectedFilter == 'Laporan Keuangan'

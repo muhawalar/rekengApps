@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:rekeng_apps/page/outcome/detail_outcome.dart';
 import 'package:rekeng_apps/provider/rekeng_model.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
+import 'package:rekeng_apps/provider/user_provider.dart';
 
 class FormOutcome extends StatelessWidget {
   FormOutcome({super.key});
@@ -20,6 +21,7 @@ class FormOutcome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return Form(
       key: formKey,
       child: Column(
@@ -219,13 +221,15 @@ class FormOutcome extends StatelessWidget {
                       nama: model.name.text,
                       kredit: total,
                       tanggal:
-                          '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}');
+                          '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}',
+                      userID: userProvider.user.userID);
 
                   final pengeluaran = Pengeluaran(
                       nama: model.name.text,
                       kredit: total,
                       tanggal:
-                          '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}');
+                          '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}',
+                      userID: userProvider.user.userID);
                   // print(model.name.text);
                   // print(total);
                   // print(

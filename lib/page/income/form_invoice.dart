@@ -229,10 +229,7 @@ class FormInvoice extends StatelessWidget {
                         '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}',
                     userID: userProvider.user.userID,
                   );
-                  // print(model.name.text);
-                  // print(total);
-                  // print(
-                  //     '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}');
+
                   model.addPemasukanNeracaSaldo(pemasukan, pemasukanJU);
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {

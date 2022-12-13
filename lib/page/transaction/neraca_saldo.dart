@@ -6,12 +6,15 @@ import 'package:rekeng_apps/provider/rekeng_provider.dart';
 import 'package:rekeng_apps/provider/user_provider.dart';
 
 class NeracaPage extends StatelessWidget {
-  const NeracaPage({super.key});
+  NeracaPage({super.key});
+
+  int total = 0;
 
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
     final userModel = Provider.of<UserProvider>(context);
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: FutureBuilder(
@@ -35,6 +38,8 @@ class NeracaPage extends StatelessWidget {
                         num debetNeracaSaldo = (listNeracaSaldo[index].data()
                             as Map<String, dynamic>)["debet"];
 
+                        total = total += debetNeracaSaldo as int;
+                        print("DEBET SALDO : ${total}");
                         return contentTable(
                           index: index,
                         );

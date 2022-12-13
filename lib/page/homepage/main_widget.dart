@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:rekeng_apps/material/themes_color.dart';
 import 'package:rekeng_apps/material/themes_font.dart';
 import 'package:provider/provider.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
+import 'package:rekeng_apps/provider/user_provider.dart';
 
 class MainWidget extends StatelessWidget {
   const MainWidget({super.key});
@@ -10,6 +12,11 @@ class MainWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
+    final UserProvider user = Provider.of<UserProvider>(context);
+    Future<int> totalPemasukan = model.getTotalPemasukan(user.user.userID);
+    Future<int> totalPengeluaran = model.getTotalPengeluaran(user.user.userID);
+    print("TOTAL PEMASUKAN : ${totalPemasukan}");
+
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -34,7 +41,7 @@ class MainWidget extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  'Rp. ' + '${model.kredit + model.debet}',
+                  'Rp. ${model.pemasukan - model.pengeluaran}',
                   style: FontStyle.value,
                 ),
                 SizedBox(
@@ -68,10 +75,24 @@ class MainWidget extends StatelessWidget {
                         SizedBox(
                           height: 6,
                         ),
-                        Text(
-                          'Rp. ' + model.debet.toString(),
-                          style: FontStyle.value2,
-                        ),
+                        FutureBuilder(
+                            future: totalPemasukan,
+                            builder: (context, snapshot) {
+                              model.pemasukan = snapshot.data!;
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                return Text(
+                                  'Rp. ' + snapshot.data.toString(),
+                                  style: FontStyle.value2,
+                                );
+                              } else {
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ),
+                                );
+                              }
+                            }),
                       ],
                     ),
                     Column(
@@ -99,9 +120,24 @@ class MainWidget extends StatelessWidget {
                         SizedBox(
                           height: 6,
                         ),
-                        Text(
-                          'Rp. ' + model.kredit.toString(),
-                          style: FontStyle.value2,
+                        FutureBuilder(
+                          future: totalPengeluaran,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                model.pengeluaran = snapshot.data!;
+                                return Text(
+                                  'Rp. ' + snapshot.data.toString(),
+                                  style: FontStyle.value2,
+                                );
+                              }
+                            }
+                            return Center(
+                              child: CircularProgressIndicator(
+                                  color: ColorApp.white),
+                            );
+                          },
                         ),
                       ],
                     ),

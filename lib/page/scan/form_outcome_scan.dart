@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:rekeng_apps/page/outcome/detail_outcome.dart';
 import 'package:rekeng_apps/provider/rekeng_model.dart';
 import 'package:rekeng_apps/provider/rekeng_provider.dart';
+import 'package:rekeng_apps/provider/user_provider.dart';
 
 class FormOutcomeScan extends StatelessWidget {
   FormOutcomeScan({super.key});
@@ -20,6 +21,7 @@ class FormOutcomeScan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = Provider.of<RekengProvider>(context);
+    UserProvider userProvider = Provider.of<UserProvider>(context);
     return Form(
       key: formKey,
       child: Column(
@@ -217,23 +219,21 @@ class FormOutcomeScan extends StatelessWidget {
                 onTap: () {
                   String finalValue = model.resultScan!.replaceAll(".", "");
                   int? totalScan = int.parse(finalValue);
-                  // model.totalPengeluaran(total);
-                  // final nama = model.name;
+
                   final pengeluaranJu = PengeluaranJurnalUmum(
                       nama: model.name.text,
                       kredit: totalScan,
                       tanggal:
-                          '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}');
+                          '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}',
+                      userID: userProvider.user.userID);
 
                   final pengeluaran = Pengeluaran(
                       nama: model.name.text,
                       kredit: totalScan,
                       tanggal:
-                          '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}');
-                  // print(model.name.text);
-                  // print(total);
-                  // print(
-                  //     '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}');
+                          '${model.inputDate.day}/${model.inputDate.month}/${model.inputDate.year}',
+                      userID: userProvider.user.userID);
+
                   model.addPengeluaranNeracaSaldo(pengeluaran, pengeluaranJu);
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
