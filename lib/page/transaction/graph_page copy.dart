@@ -74,7 +74,7 @@ class GraphPageOutcome extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Penerimaan',
+                    'Pengeluaran',
                     style: FontStyle.caption3,
                   ),
                   Text(
@@ -115,7 +115,7 @@ class GraphPageOutcome extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Penerimaan',
+                    'Pengeluaran',
                     style: FontStyle.caption2,
                   ),
                   Text(
